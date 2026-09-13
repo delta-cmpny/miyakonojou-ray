@@ -1,0 +1,618 @@
+@charset "UTF-8";
+
+/* ============================================================
+   美容室Ray v2
+
+   参考: THE SALON(thesalon-toyama.com) / hairmada(hairmada.com)
+        fleur de eLan(elan-v.com)
+
+   v1(NANEA / Liner / STILL 参照)との違い:
+     - 写真に文字を重ねない。白地に文字、その下に写真   … hairmada
+     - メニュー価格をトップページに全部載せる            … elan
+     - Newsを日付つきのリストで複数件                   … elan
+     - 文章を削らず、丁寧に語る                         … THE SALON
+     - 予約は枠線ではなく塗りのボタン                   … hairmada
+     - 欧文はセリフではなくサンセリフ、字間を広く        … hairmada
+     - 背景は白ではなくアイボリー                       … elan
+     - セクション見出しは中央の小さな英字ラベル         … elan
+   ============================================================ */
+
+:root {
+  --bg:      #F7F3EC;  /* アイボリー。v1は白 */
+  --bg-tint: #EFE9DF;  /* 一段濃い帯。セクションを交互に塗り分ける */
+  --paper:   #FFFDF9;
+  --ink:     #2A2724;
+  --muted:   #6E6760;
+  --rule:    #DDD5C8;
+  --accent:  #2E5A7D;  /* 店の入口の青いドア。v1から引き継ぐ */
+  --accent-d:#1F4159;
+
+  --sans-ja: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", YuGothic, "Noto Sans JP", sans-serif;
+  --serif-ja:"Hiragino Mincho ProN", "Yu Mincho", YuMincho, "Noto Serif JP", serif;
+  /* v1はセリフ(Cormorant)。v2はサンセリフで字間を広く取る。Webフォントは使わない */
+  --sans-en: "Helvetica Neue", Arial, "Hiragino Sans", sans-serif;
+
+  --pad: clamp(1.25rem, 6vw, 3rem);
+  --gap: clamp(3.5rem, 11vw, 7rem);
+  --max: 980px;
+  --callbar-h: 3.75rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans-ja);
+  font-size: 1rem;
+  line-height: 1.95;
+  letter-spacing: .03em;
+  padding-bottom: calc(var(--callbar-h) + env(safe-area-inset-bottom, 0px));
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: var(--accent); }
+a:hover, a:focus-visible { color: var(--accent-d); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.vh {
+  position: absolute; width: 1px; height: 1px; margin: -1px;
+  padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.skip {
+  position: absolute; width: 1px; height: 1px; margin: -1px;
+  padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.skip:focus {
+  position: fixed; left: var(--pad); top: .5rem; z-index: 100;
+  width: auto; height: auto; min-height: 44px; margin: 0;
+  clip-path: none; overflow: visible;
+  display: inline-flex; align-items: center;
+  background: var(--paper); padding: .5rem 1rem; border: 1px solid var(--accent);
+}
+
+/* ------------------------------------------------------------
+   ヘッダー
+   ------------------------------------------------------------ */
+
+.hd {
+  position: sticky;   /* v1は固定しない。v2は追従させる(hairmadaと同じ) */
+  top: 0;
+  z-index: 60;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+}
+.hd__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: var(--pad);
+  min-height: 4rem;
+}
+
+.hd__logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 44px;
+  margin-right: auto;
+  font-family: var(--serif-ja);
+  font-size: 1.6rem;
+  line-height: 1;
+  letter-spacing: .1em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.hd__logo span {
+  font-family: var(--sans-en);
+  font-size: .48rem;
+  letter-spacing: .34em;
+  color: var(--muted);
+  margin-top: .35em;
+}
+
+/* 予約は塗りのボタン(hairmadaの型)。v1は枠線だけだった */
+.hd__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: .35rem 1.1rem;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--sans-en);
+  font-size: .85rem;
+  letter-spacing: .16em;
+  line-height: 1.2;
+  transition: background-color .15s;
+}
+.hd__cta:hover, .hd__cta:focus-visible { background: var(--accent-d); color: #fff; }
+.hd__cta span {
+  font-size: .62rem;
+  letter-spacing: .06em;
+  opacity: .85;
+  margin-top: .15em;
+}
+
+/* ハンバーガー */
+.hd__toggle {
+  order: 3;
+  appearance: none;
+  border: 1px solid var(--rule);
+  background: transparent;
+  width: 44px; height: 44px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 5px;
+  cursor: pointer;
+}
+.hd__toggle i {
+  display: block; width: 18px; height: 1px;
+  background: var(--ink);
+  transition: transform .25s, opacity .25s;
+}
+/* i は2本。ボタン内の先頭は .vh の span なので nth-child ではなく nth-of-type で指定する */
+.hd__toggle.is-open i:nth-of-type(1) { transform: translateY(3px) rotate(45deg); }
+.hd__toggle.is-open i:nth-of-type(2) { transform: translateY(-3px) rotate(-45deg); }
+
+.hd__nav ul { list-style: none; margin: 0; padding: 0; }
+.hd__nav a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  text-decoration: none;
+  color: var(--ink);
+  font-family: var(--sans-en);
+  font-size: .95rem;
+  letter-spacing: .16em;
+  border-bottom: 1px solid var(--rule);
+}
+
+@media (max-width: 899px) {
+  .hd__nav { display: none; flex-basis: 100%; order: 4; padding-bottom: .75rem; }
+  .hd__nav.is-open { display: block; }
+  .hd__cta { order: 2; }
+}
+@media (min-width: 900px) {
+  .hd__toggle { display: none; }
+  .hd__nav { order: 2; }
+  .hd__nav ul { display: flex; align-items: center; gap: clamp(.9rem, 2vw, 1.7rem); }
+  .hd__nav a { border-bottom: none; min-height: 44px; padding-inline: .35rem; font-size: .82rem; }
+  .hd__nav a:hover { color: var(--accent); }
+  .hd__cta { order: 3; margin-left: 1.25rem; }
+}
+
+/* ------------------------------------------------------------
+   ヒーロー: 写真に文字を重ねない (hairmadaの型)
+   ------------------------------------------------------------ */
+
+.mv { background: var(--bg); }
+
+.mv__head {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding: clamp(3.5rem, 12vw, 7rem) var(--pad) clamp(2.5rem, 8vw, 4rem);
+  text-align: center;
+}
+.mv__en {
+  margin: 0;
+  font-family: var(--sans-en);
+  font-weight: 400;
+  /* 1行ずつ span で区切ってあるので、改行位置は幅で変わらない。
+     行の最長は "FOR EVERY DAY." の14文字 */
+  font-size: clamp(1.5rem, 7.2vw, 3.4rem);
+  line-height: 1.5;
+  letter-spacing: .12em;
+  text-indent: .12em;   /* 字間の右余りで中央がずれるぶんの半分 */
+}
+.mv__en span { display: block; }
+.mv__ja {
+  margin: clamp(1.25rem, 4vw, 2rem) 0 0;
+  font-size: .78rem;
+  letter-spacing: .28em;
+  text-indent: .28em;
+  color: var(--muted);
+}
+
+.mv__photo img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* 横幅が取れたら、写真を左半分に敷いて文字を右に置く (hairmadaの型)。
+   写真は画面の左端まで出しきり、文字側だけ余白を持たせる。
+   スマホでは縦積みのまま (文字 → 写真)。 */
+@media (min-width: 860px) {
+  .mv {
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+    align-items: center;
+    min-height: min(82svh, 660px);
+  }
+  .mv__photo {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: stretch;
+  }
+  .mv__photo img {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .mv__head {
+    grid-column: 2;
+    grid-row: 1;
+    max-width: none;
+    margin-inline: 0;
+    padding: var(--pad) clamp(1.5rem, 4vw, 3.5rem);
+    text-align: left;
+    /* 文字の大きさを「画面幅」ではなく「この列の幅」で決めるため */
+    container-type: inline-size;
+  }
+  .mv__en {
+    /* 左揃えなので、中央寄せのための字下げは要らない */
+    text-indent: 0;
+    /* 画面幅で決めると、列が狭い中間幅(1280px前後)で
+       "FOR EVERY DAY." が2行に折れた。列の幅(cqw)を基準にする。
+       最長行は14文字 + 字間 .12em で約9.8em ぶん。
+       9.4cqw なら 9.8em = 0.92 列幅 で必ず1行に収まる。 */
+    font-size: min(3.4rem, 9.4cqw);
+  }
+  .mv__ja { text-indent: 0; }
+}
+
+/* ------------------------------------------------------------
+   セクション
+   ------------------------------------------------------------ */
+
+.sec {
+  padding-block: var(--gap);
+}
+.sec--tint { background: var(--bg-tint); }
+
+/* セクション見出しは縦組み (elanの型)。v1は横組みの大きな欧文だった */
+.sec__label {
+  margin: 0 auto clamp(2rem, 6vw, 3rem);
+  width: max-content;
+  font-family: var(--sans-en);
+  font-size: .82rem;
+  letter-spacing: .32em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.sec__label span {
+  display: block;
+  padding-bottom: 1rem;
+  position: relative;
+}
+.sec__label span::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 1px;
+  height: 1rem;
+  background: var(--rule);
+}
+
+.sec__body {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+.sec__note {
+  max-width: 36em;
+  margin: 0 auto clamp(2rem, 6vw, 3rem);
+  font-size: .85rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* コンセプト */
+.lead {
+  font-family: var(--serif-ja);
+  font-weight: 400;
+  /* <br>で改行を固定しているので、必ず幅に連動させる。最長行は8文字 */
+  font-size: clamp(1.4rem, 6.4vw, 2.5rem);
+  line-height: 1.7;
+  letter-spacing: .08em;
+  margin: 0 0 clamp(1.75rem, 5vw, 2.5rem);
+  text-align: center;
+}
+#concept p:not(.lead) {
+  max-width: 34em;
+  margin: 0 auto 1.5rem;
+}
+#concept p:last-child { margin-bottom: 0; }
+
+/* 特徴を番号つきで並べる (THE SALONの型) */
+.feat { list-style: none; margin: 0; padding: 0; }
+.feat > li + li { margin-top: clamp(2.5rem, 8vw, 4rem); }
+.feat__n {
+  margin: 0 0 .5rem;
+  font-family: var(--sans-en);
+  font-size: .85rem;
+  letter-spacing: .3em;
+  color: var(--accent);
+}
+.feat h3 {
+  margin: 0 0 .9rem;
+  font-family: var(--serif-ja);
+  font-weight: 400;
+  font-size: clamp(1.15rem, 4.6vw, 1.5rem);
+  letter-spacing: .08em;
+}
+.feat p:not(.feat__n) { max-width: 34em; margin: 0; }
+
+@media (min-width: 760px) {
+  .feat { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 4vw, 2.75rem); }
+  .feat > li + li { margin-top: 0; }
+}
+
+/* ------------------------------------------------------------
+   価格表: トップページに全部載せる (elanの型)
+   ------------------------------------------------------------ */
+
+.price + .price { margin-top: clamp(2.5rem, 8vw, 3.5rem); }
+.price h3 {
+  margin: 0 0 .25rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--ink);
+  font-family: var(--sans-en);
+  font-weight: 400;
+  font-size: 1.05rem;
+  letter-spacing: .18em;
+}
+.price dl { margin: 0; }
+.price dl > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1em;
+  padding: .75rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.price dt {
+  flex: 1 1 auto;
+  min-width: 0;         /* 長い品目名で親をはみ出させない */
+  font-size: .92rem;
+}
+.price dt span {
+  display: block;
+  font-size: .76rem;
+  color: var(--muted);
+  letter-spacing: .02em;
+}
+.price dd {
+  flex: 0 0 auto;
+  margin: 0;
+  white-space: nowrap;
+  font-family: var(--sans-en);
+  font-size: .95rem;
+  letter-spacing: .02em;
+}
+.price__note {
+  margin: 1rem 0 0;
+  font-size: .8rem;
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------
+   ギャラリー: 2列グリッド (hairmadaの型)
+   ------------------------------------------------------------ */
+
+.gal {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(.75rem, 3vw, 1.75rem);
+}
+.gal img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.gal p {
+  margin: .6rem 0 0;
+  font-size: .74rem;
+  letter-spacing: .06em;
+  color: var(--muted);
+}
+@media (min-width: 760px) {
+  .gal { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ------------------------------------------------------------
+   News: 日付つきのリスト (elanの型)
+   ------------------------------------------------------------ */
+
+.news { list-style: none; margin: 0; padding: 0; max-width: 40em; margin-inline: auto; }
+.news li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1.5rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.news li:first-child { border-top: 1px solid var(--rule); }
+.news__date {
+  flex: 0 0 6em;
+  margin: 0;
+  font-family: var(--sans-en);
+  font-size: .78rem;
+  letter-spacing: .14em;
+  color: var(--accent);
+  padding-top: .25em;
+}
+.news__txt { flex: 1 1 14em; margin: 0; font-size: .92rem; }
+
+/* ------------------------------------------------------------
+   アクセス
+   ------------------------------------------------------------ */
+
+.acc__list { margin: 0; }
+.acc__list > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1.5rem;
+  padding: .9rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.acc__list dt {
+  flex: 0 0 5.5em;
+  font-family: var(--sans-en);
+  font-size: .76rem;
+  letter-spacing: .16em;
+  color: var(--muted);
+  padding-top: .3em;
+}
+.acc__list dd { flex: 1 1 12em; margin: 0; font-size: .95rem; }
+.acc__list dd span {
+  display: block;
+  font-size: .78rem;
+  color: var(--muted);
+  margin-top: .2em;
+}
+.acc__list a[href^="tel:"] {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;   /* タップ領域 */
+}
+
+.acc__photo { margin: clamp(2rem, 6vw, 0) 0 0; }
+.acc__photo figcaption {
+  margin-top: .6rem;
+  font-size: .76rem;
+  color: var(--muted);
+}
+
+@media (min-width: 760px) {
+  .acc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: clamp(2rem, 5vw, 3.5rem); align-items: start; }
+  .acc__photo { margin-top: 0; }
+}
+
+.map { margin-top: clamp(2rem, 6vw, 3rem); border: 1px solid var(--rule); }
+.map iframe { display: block; width: 100%; height: clamp(240px, 52vw, 380px); border: 0; }
+
+/* ------------------------------------------------------------
+   予約
+   ------------------------------------------------------------ */
+
+.sec--res { background: var(--accent); color: #fff; padding-block: clamp(4rem, 12vw, 7rem); }
+.res {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+  text-align: center;
+}
+.res__en {
+  margin: 0 0 1.5rem;
+  font-family: var(--sans-en);
+  font-size: .82rem;
+  letter-spacing: .32em;
+  text-indent: .32em;
+  color: rgba(255,255,255,.75);
+  text-transform: uppercase;
+}
+.res__txt {
+  max-width: 32em;
+  margin: 0 auto clamp(2rem, 6vw, 2.75rem);
+  color: rgba(255,255,255,.92);
+  font-size: .95rem;
+}
+.res__tel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  font-family: var(--sans-en);
+  font-size: clamp(1.9rem, 8vw, 3rem);
+  letter-spacing: .06em;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,.45);
+  padding-bottom: .1em;
+}
+.res__hours {
+  margin: 1.25rem 0 0;
+  font-size: .82rem;
+  color: rgba(255,255,255,.8);
+}
+
+/* ------------------------------------------------------------
+   フッター / 画面下の電話バー
+   ------------------------------------------------------------ */
+
+.ft { background: var(--bg-tint); padding-block: clamp(2.5rem, 8vw, 4rem); }
+.ft__inner {
+  width: 100%; max-width: var(--max);
+  margin-inline: auto; padding-inline: var(--pad);
+  font-size: .85rem; color: var(--muted);
+}
+.ft__logo {
+  margin: 0 0 1rem;
+  font-family: var(--serif-ja);
+  font-size: 1.5rem;
+  letter-spacing: .1em;
+  color: var(--ink);
+}
+.ft address { font-style: normal; line-height: 1.8; }
+.ft address p { margin: 0; }
+.ft address a { display: inline-flex; align-items: center; min-height: 44px; }
+.ft__sns { list-style: none; display: flex; gap: .25rem; margin: 1rem 0 0; padding: 0; }
+.ft__sns a {
+  display: flex; align-items: center; justify-content: center;
+  min-width: 44px; min-height: 44px;
+  color: var(--muted);
+}
+.ft__sns a:hover { color: var(--accent); }
+.ft__sns svg { width: 1.3rem; height: 1.3rem; display: block; }
+.ft__copy { margin: 1.5rem 0 0; font-family: var(--sans-en); font-size: .72rem; letter-spacing: .06em; }
+
+.callbar {
+  position: fixed; inset-inline: 0; bottom: 0; z-index: 70;
+  display: flex; background: var(--accent);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  box-shadow: 0 -1px 6px rgb(42 39 36 / .12);
+}
+.callbar a {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: .6em;
+  min-height: var(--callbar-h); color: #fff; text-decoration: none;
+  font-size: .92rem; letter-spacing: .08em;
+}
+.callbar span { font-family: var(--sans-en); font-size: 1.2rem; letter-spacing: .04em; }
+
+@media (min-width: 900px) {
+  body { padding-bottom: 0; }
+  .callbar { display: none; }
+}
+
+/* ------------------------------------------------------------
+   スクロールで要素を出す
+   通常スタイルが完成形。`.js` が付いているときだけ隠す
+   ------------------------------------------------------------ */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .9s cubic-bezier(.22,.61,.36,1), transform .9s cubic-bezier(.22,.61,.36,1);
+}
+.js .reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+}
