@@ -1309,3 +1309,27 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 .prods--grid .prod + .prod { margin-top: 0; }
 .prods--grid .prod__media { aspect-ratio: 1; }
 .prods--grid .prod__name { font-size: .9rem; margin-bottom: 0; }
+
+/* --- トップの Staff セクション --------------------------------
+   トップに出すのは店長のAkiだけ。残りは staff.html にいる。 */
+.staff-lead { margin: 1.5rem 0 0; }
+.staff-lead .name {
+  display: block;
+  font-family: var(--serif-en);
+  font-size: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: .06em;
+}
+.staff-lead .role {
+  display: block;
+  margin-top: .35rem;
+  font-size: .78rem;
+  letter-spacing: .14em;
+  color: var(--muted);
+}
+/* 縦長の人物写真。他のセクションの写真と高さが揃うように切る */
+.figure--portrait img {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+}

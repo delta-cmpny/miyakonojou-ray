@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=20261009a">
+<link rel="stylesheet" href="style.css?v=20261009b">
 
 <script type="application/ld+json">
 {
@@ -229,7 +229,26 @@
     </div>
   </section>
 
-  <!-- 7. Products -------------------------------------------
+  <!-- 7. Staff ----------------------------------------------
+       他のセクションと同じく、詳細は別ページへ送る型。
+       トップに出すのは店長のAkiだけで、残りの4名は staff.html にいる。
+       写真は右。直後の Products が写真左なので、左右が交互になる。 -->
+  <section class="section" id="staff">
+    <div class="wrap cols reveal">
+      <div>
+        <h2 class="section__head"><span class="en">Staff</span></h2>
+        <p>ヘアだけでなく、まつ毛もエステも脱毛も、女性スタッフだけでお受けしています。七五三や成人式の着付けとヘアセットも承っています。</p>
+        <p class="staff-lead"><span class="name">Aki</span><span class="role">オーナー</span></p>
+        <a class="section__more" href="staff.html">スタッフを見る</a>
+      </div>
+      <figure class="figure cols__media figure--portrait" style="margin-top:0">
+        <img src="assets/staff-aki.webp" width="666" height="1000" loading="lazy" decoding="async"
+             alt="美容室Rayのオーナー、Aki">
+      </figure>
+    </div>
+  </section>
+
+  <!-- 8. Products -------------------------------------------
        STILL のブランド別セクションの型 -->
   <section class="section" id="products">
     <div class="wrap cols cols--media-first reveal">
@@ -246,7 +265,7 @@
     </div>
   </section>
 
-  <!-- 8. News -----------------------------------------------
+  <!-- 9. News -----------------------------------------------
        NANEA「News」の型: 今月の休業日を日付で列挙する。
 
        ★毎月ここを書き換える★
@@ -268,7 +287,7 @@
     </div>
   </section>
 
-  <!-- 9. Instagram ------------------------------------------
+  <!-- 10. Instagram ------------------------------------------
        Liner「Social / Our Media」、STILL「STILL Instagram」の型。
        埋め込みは外部スクリプトが増えるので、カードでアカウントに送る -->
   <section class="section" id="instagram">
@@ -283,7 +302,7 @@
     </div>
   </section>
 
-  <!-- 10. Salon Info ----------------------------------------
+  <!-- 11. Salon Info ----------------------------------------
         NANEA「Salon Info」の型: 中央揃え -->
   <section class="section section--center" id="salon">
     <div class="wrap reveal">
@@ -324,7 +343,7 @@
     </div>
   </section>
 
-  <!-- 11. Access --------------------------------------------- -->
+  <!-- 12. Access --------------------------------------------- -->
   <section class="section" id="access">
     <div class="wrap reveal">
       <h2 class="section__head"><span class="en">Access</span></h2>
@@ -345,7 +364,7 @@
     </div>
   </section>
 
-  <!-- 12. Reservation ★反転 ---------------------------------
+  <!-- 13. Reservation ★反転 ---------------------------------
         NANEA / Liner の型: 予約を独立セクションにする -->
   <section class="section section--invert" id="reservation">
     <div class="wrap reveal">
