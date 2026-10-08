@@ -599,27 +599,6 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 }
 
 /* 取扱い商品 */
-.brands {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.brands li {
-  padding: 1.1rem 0;
-  border-bottom: 1px solid var(--rule);
-}
-.brands .name {
-  display: block;
-  font-family: var(--serif-en);
-  font-size: 1.15rem;
-  letter-spacing: .04em;
-}
-.brands .desc {
-  display: block;
-  font-size: .85rem;
-  color: var(--muted);
-  margin-top: .3em;
-}
 
 /* ============================================================
    参考3サイトから抽出した骨格のためのコンポーネント
@@ -1236,3 +1215,97 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 
 /* `.fader` はJSの目印(document.querySelectorAll('.fader'))で、
    見た目は `.photo-bg img` 側で付けている。スタイル定義が無いのは意図的。 */
+
+/* ------------------------------------------------------------
+   スタッフ (staff.html)
+   既存サイト(beauty-ray.com/スタッフ/)の名前・肩書き・写真をそのまま移したもの
+   ------------------------------------------------------------ */
+
+.staff {
+  list-style: none;
+  margin: 0 0 clamp(2rem, 6vw, 3rem);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 4vw, 2.25rem);
+}
+@media (min-width: 760px) { .staff { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+.staff img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+}
+.staff__name {
+  margin: .9rem 0 .2rem;
+  font-family: var(--serif-en);
+  font-size: 1.3rem;
+  letter-spacing: .06em;
+  line-height: 1.2;
+}
+.staff__role { margin: 0; font-size: .78rem; line-height: 1.8; color: var(--muted); }
+/* 肩書きは原典の語をそのまま使い、区切り記号を足さずに行で分ける */
+.staff__role span { display: block; }
+
+/* ------------------------------------------------------------
+   取扱い商品 (products.html)
+   ------------------------------------------------------------ */
+
+.prod-group { margin-top: clamp(2.5rem, 8vw, 4rem); }
+
+.prods { list-style: none; margin: 0; padding: 0; }
+.prods .prod + .prod { margin-top: clamp(2rem, 6vw, 3rem); }
+
+.prod__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  padding: clamp(.75rem, 3vw, 1.25rem);
+  background: #fff;
+  border: 1px solid var(--rule);
+}
+/* 商品写真はロゴから縦長のボトルまで縦横比がばらばらなので、切らずに収める */
+.prod__media img { width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; }
+
+/* グリッドの2列目。長い商品名で列がはみ出さないように */
+.prod__body { min-width: 0; }
+
+.prod__name { margin: .9rem 0 .5rem; font-size: 1rem; line-height: 1.65; }
+.prod__lead { margin: 0 0 .9rem; font-size: .85rem; line-height: 1.8; color: var(--muted); }
+.prod__desc { margin: 0 0 .85em; font-size: .88rem; line-height: 1.95; }
+.prod__desc:last-of-type { margin-bottom: 0; }
+
+.prod__price { margin: 1.1rem 0 0; }
+.prod__price > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .55rem 0;
+  border-bottom: 1px dotted var(--rule);
+}
+.prod__price dt { font-size: .85rem; line-height: 1.7; }
+.prod__price dd { margin: 0; font-size: .85rem; white-space: nowrap; }
+
+/* 説明つきの商品は、幅が取れたら写真を左に置く */
+@media (min-width: 720px) {
+  .prods:not(.prods--grid) .prod {
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+    align-items: start;
+  }
+  .prods:not(.prods--grid) .prod__name { margin-top: 0; }
+}
+
+/* 商品名と写真だけのものは並べる */
+.prods--grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 4vw, 2rem);
+}
+@media (min-width: 760px) { .prods--grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.prods--grid .prod + .prod { margin-top: 0; }
+.prods--grid .prod__media { aspect-ratio: 1; }
+.prods--grid .prod__name { font-size: .9rem; margin-bottom: 0; }

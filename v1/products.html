@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=20260914g">
+<link rel="stylesheet" href="style.css?v=20261009a">
 </head>
 <body>
 
@@ -37,6 +37,7 @@
         <li><a href="./">Home</a></li>
         <li><a href="./#about">About</a></li>
         <li><a href="menu.html">Menu</a></li>
+        <li><a href="staff.html">Staff</a></li>
         <li><a href="products.html" aria-current="page">Products</a></li>
         <li><a href="./#salon">Salon Info</a></li>
         <li><a href="./#access">Access</a></li>
@@ -67,7 +68,7 @@
 
   <div class="page-head wrap reveal">
     <h1 class="section__head"><span class="en">Products</span><span class="vh">取扱い商品</span></h1>
-    <p>店頭で扱っている商品です。価格と在庫はご来店時にお尋ねください。使い方や髪質に合うかどうかもご相談いただけます。</p>
+    <p>店頭で扱っている商品です。使い方や髪質に合うかどうかもご相談いただけます。在庫と最新の価格はご来店時にお尋ねください。</p>
   </div>
 
   <div class="wrap reveal" style="padding-bottom:clamp(3rem,10vw,5rem)">
@@ -78,56 +79,144 @@
       <figcaption>期間限定のセットなどは、店頭の黒板でお知らせしています。</figcaption>
     </figure>
 
-    <section class="price-group">
-      <h2 class="price-group__head">ヘアケア</h2>
-      <ul class="brands">
-        <li>
-          <span class="name">MOROCCANOIL</span>
-          <span class="desc">アルガンオイル配合のトリートメントとシャンプー・コンディショナー。髪質を選ばず使えます。</span>
+    <!-- 既存サイト(beauty-ray.com/取扱い商品/)の商品名・説明・価格・写真をそのまま移したもの。
+         並び順も原典どおり。説明と価格があるのは MOROCCANOIL の2点だけで、
+         それ以外は原典にも商品名と写真しか無い。 -->
+    <section class="prod-group">
+      <h2 class="price-group__head">MOROCCANOIL&reg;</h2>
+
+      <ul class="prods">
+        <li class="prod">
+          <div class="prod__media">
+            <img src="assets/prod-moroccanoil-treatment.webp" width="320" height="304" loading="lazy" decoding="async"
+                 alt="MOROCCANOILトリートメントのボトル">
+          </div>
+          <div class="prod__body">
+            <h3 class="prod__name">MOROCCANOIL&reg;トリートメント</h3>
+            <p class="prod__lead">すべての髪質　まとまりのあるツヤやかな仕上がり</p>
+            <p class="prod__desc">シルクのようになめらかで、いきいきと輝く髪。そんな健康的で美しい髪を生み出すMoroccanoilトリートメントはどんな髪質にも効果的。</p>
+            <p class="prod__desc">髪質を選ばず、髪をいたわる一方、べたつきが残らないためトリートメントとして、スタイリングやフィニッシングとしても、ご使用いただけます。また他のMoroccanoil製品と一緒にご使用いただけるので、様々なステップで役立ち、あらゆるケースで髪の質感を向上させます。</p>
+            <p class="prod__desc">Moroccanoilトリートメントは、アルガンオイル（抗酸化成分・保湿成分）、脂肪酸（保湿成分）やビタミン（美容成分）を配合。髪を美しく輝くように保ち、同時にやさしく守って、髪質から健康的になったことを実感できます。</p>
+            <p class="prod__desc">また、ブロードライやスタイリングの際の熱、あるいは日射しや海水、塩素などでダメージを受けた髪にも効果的。強くしなやかな髪へと導きます。乾かす時間を短縮し、スタイリングのしやすさでも、違いを実感いただけることでしょう。</p>
+            <dl class="prod__price">
+              <div><dt>100ml</dt><dd>4,500円（税抜）</dd></div>
+            </dl>
+          </div>
         </li>
-        <li>
-          <span class="name">Re:</span>
-          <span class="desc">アジュバンのヘアケアライン。</span>
-        </li>
-        <li>
-          <span class="name">oggi otto</span>
-          <span class="desc">髪の状態に合わせて組み合わせるトリートメントライン。</span>
-        </li>
-        <li>
-          <span class="name">MIHATSU</span>
-          <span class="desc">モナリのクレンジングシャンプー。</span>
-        </li>
-        <li>
-          <span class="name">PROTECT</span>
-          <span class="desc">モナリのカバートリートメント。</span>
+
+        <li class="prod">
+          <div class="prod__media">
+            <img src="assets/prod-moroccanoil-volume.webp" width="320" height="304" loading="lazy" decoding="async"
+                 alt="MOROCCANOILのシャンプーとコンディショナーのボトル">
+          </div>
+          <div class="prod__body">
+            <h3 class="prod__name">エクストラボリューム シャンプー ＆ コンディショナー</h3>
+            <p class="prod__lead">軟毛〜ふつう毛　動きのある軽い仕上がり</p>
+            <p class="prod__desc">毛髪内部にハリ・コシを与え、髪１本１本を保湿しながらふんわりと仕上げるシャンプー＆コンディショナーです。</p>
+            <p class="prod__desc">アルガンオイル（抗酸化成分・保湿成分）をはじめ、髪をいたわる成分の配合により、もつれを防いで髪のボリューム感をアップします。スタイリングしやすいツヤやかで、まとまりと動きのある美しい髪へ。リン酸塩やパラベンは使用していません。カラーリングした髪にも安心してご使用いただけます。</p>
+            <dl class="prod__price">
+              <div><dt>モイスチャーリペアシャンプー 250ml</dt><dd>2,800円（税抜）</dd></div>
+              <div><dt>モイスチャーリペアコンディショナー 250ml</dt><dd>2,900円（税抜）</dd></div>
+            </dl>
+          </div>
         </li>
       </ul>
     </section>
 
-    <section class="price-group">
-      <h2 class="price-group__head">スキンケア</h2>
-      <ul class="brands">
-        <li>
-          <span class="name">モナリ TR50</span>
-          <span class="desc">クレンジング／ソープ／ピーリングジェル／ローション／エッセンス／UVクリーム。</span>
-        </li>
-        <li>
-          <span class="name">PRESIST V FIX</span>
-          <span class="desc">アメージングクリーム。</span>
-        </li>
-      </ul>
-    </section>
+    <section class="prod-group">
+      <h2 class="price-group__head">そのほかの取扱い商品</h2>
 
-    <section class="price-group">
-      <h2 class="price-group__head">ベースメイク</h2>
-      <ul class="brands">
-        <li>
-          <span class="name">V3ファンデーション</span>
-          <span class="desc">スキンケアをしながら使えるファンデーション。</span>
+      <ul class="prods prods--grid">
+        <li class="prod">
+          <div class="prod__media">
+            <img src="assets/prod-re.webp" width="366" height="203" loading="lazy" decoding="async"
+                 alt="Re: のロゴ">
+          </div>
+          <h3 class="prod__name">Re:&gt;&gt;&gt;</h3>
         </li>
-        <li>
-          <span class="name">VMファンデーション</span>
-          <span class="desc">メンズ用。</span>
+        <li class="prod">
+          <div class="prod__media">
+            <img src="assets/prod-oggiotto.webp" width="224" height="225" loading="lazy" decoding="async"
+                 alt="oggi otto のロゴ">
+          </div>
+          <h3 class="prod__name">oggi otto</h3>
+        </li>
+        <li class="prod">
+          <div class="prod__media">
+            <img src="assets/prod-v3.webp" width="800" height="800" loading="lazy" decoding="async"
+                 alt="V3ファンデーションの容器">
+          </div>
+          <h3 class="prod__name">V3ファンデーション</h3>
+        </li>
+        <li class="prod">
+          <div class="prod__media">
+            <img src="assets/prod-vm.webp" width="800" height="800" loading="lazy" decoding="async"
+                 alt="VMファンデーション（メンズ）の容器">
+          </div>
+          <h3 class="prod__name">VMファンデーション（メンズ）</h3>
+        </li>
+        <li class="prod">
+          <div class="prod__media">
+            <img src="assets/prod-presist.webp" width="600" height="600" loading="lazy" decoding="async"
+                 alt="PRESIST V FIX アメージングクリームの容器">
+          </div>
+          <h3 class="prod__name">PRESIST V FIX アメージングクリーム</h3>
+        </li>
+        <li class="prod">
+          <div class="prod__media">
+            <img src="assets/prod-monari-cleansing.webp" width="460" height="630" loading="lazy" decoding="async"
+                 alt="モナリTR50 CLEANSING のボトル">
+          </div>
+          <h3 class="prod__name">モナリTR50 CLEANSING</h3>
+        </li>
+        <li class="prod">
+          <div class="prod__media">
+            <img src="assets/prod-monari-soap.webp" width="460" height="630" loading="lazy" decoding="async"
+                 alt="モナリ TR50 ソープのパッケージ">
+          </div>
+          <h3 class="prod__name">モナリ TR50 ソープ</h3>
+        </li>
+        <li class="prod">
+          <div class="prod__media">
+            <img src="assets/prod-monari-peeling.webp" width="460" height="630" loading="lazy" decoding="async"
+                 alt="モナリTR50 PEELING GEL のボトル">
+          </div>
+          <h3 class="prod__name">モナリTR50 PEELING GEL</h3>
+        </li>
+        <li class="prod">
+          <div class="prod__media">
+            <img src="assets/prod-monari-lotion.webp" width="460" height="630" loading="lazy" decoding="async"
+                 alt="モナリ TR50 LOTION のボトル">
+          </div>
+          <h3 class="prod__name">モナリ TR50 LOTION</h3>
+        </li>
+        <li class="prod">
+          <div class="prod__media">
+            <img src="assets/prod-monari-essence.webp" width="460" height="630" loading="lazy" decoding="async"
+                 alt="モナリ TR50 エッセンスのボトル">
+          </div>
+          <h3 class="prod__name">モナリ TR50 エッセンス</h3>
+        </li>
+        <li class="prod">
+          <div class="prod__media">
+            <img src="assets/prod-monari-uv.webp" width="460" height="630" loading="lazy" decoding="async"
+                 alt="モナリ TR50 UV CREAM のボトル">
+          </div>
+          <h3 class="prod__name">モナリ TR50 UV CREAM</h3>
+        </li>
+        <li class="prod">
+          <div class="prod__media">
+            <img src="assets/prod-mihatsu.webp" width="460" height="630" loading="lazy" decoding="async"
+                 alt="クレンジングシャンプー MIHATSU のボトル">
+          </div>
+          <h3 class="prod__name">クレンジングシャンプー MIHATSU ［ミハツ］</h3>
+        </li>
+        <li class="prod">
+          <div class="prod__media">
+            <img src="assets/prod-protect.webp" width="460" height="630" loading="lazy" decoding="async"
+                 alt="カバートリートメント PROTECT のボトル">
+          </div>
+          <h3 class="prod__name">カバートリートメント PROTECT</h3>
         </li>
       </ul>
     </section>
