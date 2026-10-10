@@ -1366,3 +1366,19 @@ a:hover, a:focus-visible { color: var(--accent-d); }
      割合にすると768pxでも457px残る。 */
   .cols--media-sm { grid-template-columns: minmax(0, 28%) minmax(0, 1fr); }
 }
+
+/* --- Instagram: 背景に自作のマークを薄く敷く ------------------
+   ナビ・フッターと同じインラインSVG。外部画像は読み込まない。 */
+.section--ig { position: relative; overflow: hidden; }
+.section--ig > .wrap { position: relative; z-index: 1; }
+.ig-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(15rem, 40vw, 28rem);
+  height: auto;
+  color: var(--accent);
+  opacity: .07;
+  pointer-events: none;
+}

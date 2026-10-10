@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=20261010b">
+<link rel="stylesheet" href="style.css?v=20261010c">
 
 <script type="application/ld+json">
 {
@@ -109,8 +109,8 @@
            fetchpriority="high" decoding="async"
            alt="美容室Rayの店内。鏡とセット面が並ぶ">
       <img data-src="assets/hero-night.webp" width="1400" height="1050" decoding="async" alt="">
-      <img data-src="assets/hero-4.webp" width="1400" height="788" decoding="async" alt="">
       <img data-src="assets/hero-3.webp" width="1400" height="788" decoding="async" alt="">
+      <img data-src="assets/hero-4.webp" width="1400" height="788" decoding="async" alt="">
     </div>
 
     <p class="slide-dots" id="slideDots" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i></p>
@@ -138,7 +138,6 @@
       <figure class="figure cols__media figure--bleed" style="margin-top:0">
         <img src="assets/interior-seats.webp" width="1400" height="1050" loading="lazy" decoding="async"
              alt="美容室Rayの店内。鏡とセット面が並ぶ">
-        <figcaption>セット面。鏡とドレッサーが並びます。</figcaption>
       </figure>
     </div>
   </section>
@@ -156,7 +155,6 @@
       <figure class="figure cols__media" style="margin-top:0">
         <img src="assets/interior-wide.webp" width="1200" height="900" loading="lazy" decoding="async"
              alt="美容室Rayの待合スペース。黒いソファと高い天井、窓からの光">
-        <figcaption>待合スペース。天井が高く、窓から光が入ります。</figcaption>
       </figure>
     </div>
   </section>
@@ -293,7 +291,13 @@
   <!-- 10. Instagram ------------------------------------------
        Liner「Social / Our Media」、STILL「STILL Instagram」の型。
        埋め込みは外部スクリプトが増えるので、カードでアカウントに送る -->
-  <section class="section" id="instagram">
+  <section class="section section--ig" id="instagram">
+    <!-- 背景のマークは、ナビ・フッターと同じ自作のインラインSVG。外部画像は読み込まない -->
+    <svg class="ig-bg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4" fill="none" stroke="currentColor" stroke-width="1.1"/>
+      <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.1"/>
+      <circle cx="17.4" cy="6.6" r="1.15" fill="currentColor"/>
+    </svg>
     <div class="wrap reveal">
       <h2 class="section__head"><span class="en">Instagram</span></h2>
       <p>臨時休業や、期間限定で入荷した商品のお知らせはInstagramに載せています。</p>
