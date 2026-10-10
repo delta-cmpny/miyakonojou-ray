@@ -73,18 +73,20 @@
 
 <main id="main">
 
-  <div class="page-head wrap reveal">
-    <h1 class="section__head"><span class="en">Products</span><span class="vh">取扱い商品</span></h1>
-    <p>店頭で扱っている商品です。使い方や髪質に合うかどうかもご相談いただけます。在庫と最新の価格はご来店時にお尋ねください。</p>
-  </div>
-
-  <div class="wrap reveal" style="padding-bottom:clamp(3rem,10vw,5rem)">
-
-    <figure class="figure figure--offset-left" style="margin-top:0">
+  <!-- 文字が左、黒板の写真が右 -->
+  <div class="page-head wrap cols reveal">
+    <div>
+      <h1 class="section__head"><span class="en">Products</span><span class="vh">取扱い商品</span></h1>
+      <p>店頭で扱っている商品です。使い方や髪質に合うかどうかもご相談いただけます。在庫と最新の価格はご来店時にお尋ねください。</p>
+    </div>
+    <figure class="figure cols__media" style="margin-top:0">
       <img src="assets/blackboard.webp" width="481" height="640" loading="lazy" decoding="async"
            alt="店頭の黒板に手書きされた、モロッカンオイルの数量・期間限定セットの案内">
       <figcaption>期間限定のセットなどは、店頭の黒板でお知らせしています。</figcaption>
     </figure>
+  </div>
+
+  <div class="wrap reveal" style="padding-bottom:clamp(3rem,10vw,5rem)">
 
     <!-- 既存サイト(beauty-ray.com/取扱い商品/)の商品名・説明・価格・写真をそのまま移したもの。
          並び順も原典どおり。説明と価格があるのは MOROCCANOIL の2点だけで、
