@@ -1336,19 +1336,7 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 /* --- Access の店舗情報 ----------------------------------------
    ラベルと値を dl で分けず、1行ずつ読ませる形。 */
 .acc-info { margin: clamp(1.5rem, 5vw, 2.25rem) 0 0; }
-.acc-info__name {
-  margin: 0 0 1rem;
-  font-family: var(--serif-ja);
-  font-size: 1.15rem;
-  letter-spacing: .08em;
-}
 .acc-info__line { margin: 0 0 .6rem; font-size: .95rem; line-height: 1.95; }
-.acc-info__sub {
-  margin: -.35rem 0 .6rem;
-  font-size: .78rem;
-  line-height: 1.8;
-  color: var(--muted);
-}
 .acc-info__tel {
   display: inline-flex;
   align-items: baseline;
