@@ -131,7 +131,9 @@ a:hover, a:focus-visible { color: var(--accent-d); }
    ------------------------------------------------------------ */
 
 .site-header {
-  position: relative;
+  /* スクロールしても上に貼りつける */
+  position: sticky;
+  top: 0;
   z-index: 50;
   border-bottom: 1px solid var(--rule);
   background: var(--bg);
@@ -232,7 +234,13 @@ a:hover, a:focus-visible { color: var(--accent-d); }
     flex-basis: 100%;   /* ヘッダー行の幅を奪わないよう、独立した行にする */
     padding-bottom: 1rem;
   }
-  .site-nav.is-open { display: block; }
+  .site-nav.is-open {
+    display: block;
+    /* 固定ヘッダーにしたので、開いたナビが画面より高いと下の項目に届かない。
+       ナビ側をスクロールさせる */
+    max-height: calc(100svh - 4rem);
+    overflow-y: auto;
+  }
 }
 
 /* PC: 横並びで常時表示 */
