@@ -616,3 +616,64 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 @media (prefers-reduced-motion: reduce) {
   .js .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* ------------------------------------------------------------
+   Staff: v1のスタッフページと同じ内容を、1ページ構成の中に置く
+   ------------------------------------------------------------ */
+
+.staff {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 3.5vw, 2rem);
+}
+@media (min-width: 760px) { .staff { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+.staff img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+}
+.staff__name {
+  margin: .7rem 0 .15rem;
+  font-family: var(--sans-en);
+  font-size: 1.1rem;
+  letter-spacing: .12em;
+}
+.staff__role { margin: 0; font-size: .72rem; line-height: 1.8; color: var(--muted); }
+/* 肩書きは原典の語のまま、区切り記号を足さずに行で分ける */
+.staff__role span { display: block; }
+
+/* ------------------------------------------------------------
+   Products: 商品名と写真。縦横比がばらばらなので切らずに収める
+   ------------------------------------------------------------ */
+
+.prods {
+  list-style: none;
+  margin: clamp(2.5rem, 8vw, 3.5rem) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 3.5vw, 2rem);
+}
+@media (min-width: 760px) { .prods { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+.prods img {
+  /* 正方形の枠に収める。ロゴも縦長のボトルも、切らずに中に収める */
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  padding: clamp(.6rem, 2.5vw, 1rem);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+}
+.prods p {
+  margin: .6rem 0 0;
+  font-size: .74rem;
+  line-height: 1.7;
+  letter-spacing: .06em;
+  color: var(--muted);
+}
