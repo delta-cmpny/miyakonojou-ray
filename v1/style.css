@@ -1112,12 +1112,14 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 }
 
 /* ------------------------------------------------------------
-   導入: 白地に文字だけ → 写真が浮かび上がる → スライドへ
+   導入: 1枚目の写真は最初から出す。文字だけ浮かび上がる
+
+   以前は「白地に文字だけ → 写真が浮かび上がる」だったが、
+   ユーザー指示(2026-10-11)で白地から始まるのをやめた。
+   写真は最初から見えていて、文字とスライドの位置表示だけ遅れて出る。
 
    上の通常スタイル(写真あり)が完成形であり、
    JSが無い環境ではそれがそのまま出る。
-   `.js` が付いているときだけ、下のアニメーションで
-   「白地に文字だけ」の状態から始める。
 
    文字は最初から最後までインク色なので、色を渡す処理は要らない。
    (以前は白文字だったため、写真の濃さに合わせて色を変えていた)
@@ -1135,16 +1137,9 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   to   { opacity: 1; transform: none; }
 }
 
-/* 2. 写真が浮かび上がる (1.4s〜3.6s) */
-.js .hero .photo-bg { animation: photoIn 2.2s ease 1.4s both; }
-
-@keyframes photoIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-/* 3. スライドの位置表示は、写真が出てから (2.4s〜) */
-.js .hero .slide-dots { animation: dotsIn .8s ease 2.4s both; }
+/* 2. スライドの位置表示は、文字が出てから (0.9s〜)
+      ※ 写真を遅れて出す photoIn は廃止した。写真は最初から見えている。 */
+.js .hero .slide-dots { animation: dotsIn .8s ease .9s both; }
 
 @keyframes dotsIn {
   from { opacity: 0; }
@@ -1154,7 +1149,6 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 /* 動きを減らす設定では導入を飛ばし、完成形をそのまま出す */
 @media (prefers-reduced-motion: reduce) {
   .js .hero__title,
-  .js .hero .photo-bg,
   .js .hero .slide-dots { animation: none; }
   .photo-bg img { transition: none; transform: none; }
 }
