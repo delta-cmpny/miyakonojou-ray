@@ -696,3 +696,74 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   .callbar { display: none; }
   body { padding-bottom: 0; }
 }
+
+/* ------------------------------------------------------------
+   スタッフ: 1ページ構成なので5名ともこのページに出す
+   (v1 は staff.html に分けている)
+   ------------------------------------------------------------ */
+
+.staff {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 3.5vw, 2rem);
+}
+@media (min-width: 760px) { .staff { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+.staff img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+}
+.staff__name {
+  margin: .8rem 0 .2rem;
+  font-family: var(--sans-en);
+  font-size: 1.05rem;
+  letter-spacing: .14em;
+}
+.staff__role {
+  margin: 0;
+  font-family: var(--sans-ja);
+  font-size: .72rem;
+  line-height: 1.85;
+  color: var(--muted);
+}
+/* 肩書きは原典の語のまま、区切り記号を足さずに行で分ける */
+.staff__role span { display: block; }
+
+/* ------------------------------------------------------------
+   取扱い商品: 商品名と写真
+   ------------------------------------------------------------ */
+
+.prods {
+  list-style: none;
+  margin: clamp(2.5rem, 7vw, 3.5rem) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 3.5vw, 2rem);
+}
+@media (min-width: 760px) { .prods { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+.prods img {
+  /* ロゴ(366x203)から縦長のボトル(460x630)まで形がばらばらなので、
+     正方形の枠に切らずに収める。ギャラリーは cover で切っているが、
+     商品は切ると何か分からなくなる。 */
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  padding: clamp(.6rem, 2.5vw, 1rem);
+  background: #fff;
+  border: 1px solid var(--rule);
+}
+.prods p {
+  margin: .6rem 0 0;
+  font-family: var(--sans-ja);
+  font-size: .74rem;
+  line-height: 1.7;
+  letter-spacing: .04em;
+  color: var(--muted);
+}
