@@ -1,0 +1,284 @@
+:root {
+  color-scheme: light;
+  --background: #eef2ec;
+  --card: #fff;
+  --text: #26302b;
+  --muted: #5b665f;
+  --line: #dce3da;
+  --accent: #6e8b74;
+  --primary: #2f4a3a;
+  --radius: 20px;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 8px 24px rgba(38, 48, 43, .06);
+  --header-height: 88px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-bottom: 96px; }
+body {
+  margin: 0;
+  padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  background: var(--background);
+  color: var(--text);
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.9;
+  -webkit-text-size-adjust: 100%;
+}
+h1, h2, h3, p, dl, dd { margin: 0; }
+h1, h2, h3 { font-weight: 700; line-height: 1.5; }
+h1, h2 { text-wrap: balance; }
+h2 { font-size: 28px; letter-spacing: .04em; }
+h3 { font-size: 18px; }
+a { color: inherit; text-decoration: none; }
+img { display: block; width: 100%; height: auto; object-fit: cover; }
+button, a, summary { -webkit-tap-highlight-color: transparent; }
+a, summary { touch-action: manipulation; }
+:focus-visible { outline: 3px solid var(--primary); outline-offset: 5px; }
+[id] { scroll-margin-top: calc(var(--header-height) + 24px); }
+[lang="en"], .number { font-family: "Quicksand", "Zen Maru Gothic", sans-serif; }
+.container { width: calc(100% - 32px); max-width: 1152px; margin-inline: auto; }
+.card { border-radius: var(--radius); background: var(--card); box-shadow: var(--shadow); }
+.section { padding-top: 64px; }
+.section-heading { display: flex; align-items: center; gap: 24px; margin-bottom: 24px; }
+.heading-line { flex: 1; min-width: 16px; height: 1px; background: var(--line); }
+.section-heading h2 { flex-shrink: 0; }
+.section-lead { margin-top: -8px; margin-bottom: 24px; color: var(--muted); }
+.eyebrow { color: var(--muted); font-size: 14px; font-weight: 600; letter-spacing: .04em; }
+.small-text { color: var(--muted); font-size: 14px; line-height: 1.9; }
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 56px;
+  padding: 12px 24px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  transition: background-color .18s ease, box-shadow .18s ease;
+}
+.button > span[aria-hidden] { font-family: sans-serif; font-weight: 400; font-size: 20px; }
+.button-primary { background: var(--primary); color: #fff; }
+.button-secondary { border-color: var(--line); background: var(--card); color: var(--primary); }
+
+/* ヘッダー */
+.site-header { position: sticky; top: 0; z-index: 10; background: var(--background); border-bottom: 1px solid var(--line); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: var(--header-height); }
+.brand { display: flex; flex-direction: column; justify-content: center; min-height: 64px; flex-shrink: 0; }
+.brand-name { display: inline-flex; align-items: baseline; gap: 4px; font-size: 36px; font-weight: 600; line-height: 1.1; letter-spacing: -.06em; }
+.brand-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.brand-caption { margin-top: 4px; color: var(--muted); font-size: 11px; line-height: 1.6; }
+.header-nav { display: none; }
+.header-phone { min-height: 44px; padding: 8px 16px; font-size: 14px; gap: 8px; }
+
+/* 最初の画面 */
+.hero { display: grid; gap: 32px; padding-top: 24px; }
+.hero-photo { overflow: clip; }
+.hero-photo img { aspect-ratio: 4 / 3; }
+.hero-content { min-width: 0; }
+.hero .eyebrow { display: flex; align-items: center; gap: 8px; }
+.small-dot { width: 8px; height: 8px; flex-shrink: 0; background: var(--accent); border-radius: 50%; }
+.hero h1 { margin-top: 16px; font-size: 28px; line-height: 1.65; letter-spacing: .04em; }
+.hero-description { margin-top: 16px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.hero-actions .button { flex: 1 1 200px; }
+.business-info { margin-top: 24px; }
+.business-status { display: inline-block; padding: 8px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--primary); font-size: 13px; font-weight: 700; }
+.business-info .small-text { margin-top: 8px; font-size: 12px; }
+
+/* よく見るもの */
+.quick-section { padding-top: 40px; }
+.quick-heading { margin-bottom: 16px; font-size: 18px; }
+.quick-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.quick-card { display: flex; flex-direction: column; gap: 8px; padding: 16px; border: 1px solid var(--line); }
+.quick-label { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: var(--primary); font-weight: 700; }
+.circle-arrow { display: grid; place-items: center; flex-shrink: 0; width: 24px; height: 24px; background: var(--background); border-radius: 50%; font-family: sans-serif; font-size: 14px; }
+.quick-description { font-size: 13px; line-height: 1.8; overflow-wrap: anywhere; }
+.quick-description .number { font-size: 18px; font-weight: 600; }
+
+/* メニューと料金 */
+.service-grid { display: grid; gap: 24px; }
+.service-card { overflow: clip; }
+.service-card > img { aspect-ratio: 3 / 2; }
+.service-content { padding: 24px; }
+.service-content h3 { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; }
+.service-content h3 > [lang="en"] { font-size: 26px; font-weight: 600; color: var(--primary); }
+.service-japanese { font-size: 14px; }
+.service-content p { margin-top: 8px; color: var(--muted); }
+.price-layout { display: grid; gap: 24px; }
+.price-intro > p { color: var(--muted); }
+.price-list { display: grid; gap: 8px; min-width: 0; }
+.price-group { min-width: 0; }
+.price-group summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 72px; padding: 16px 24px; cursor: pointer; list-style: none; font-size: 17px; font-weight: 700; }
+.price-group summary::-webkit-details-marker { display: none; }
+.price-group summary > span:first-child { min-width: 0; }
+.summary-note { display: block; margin-top: 4px; font-size: 12px; font-weight: 400; color: var(--muted); }
+.toggle-mark { position: relative; flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--background); }
+.toggle-mark::before, .toggle-mark::after { position: absolute; content: ""; left: 8px; top: 13px; width: 12px; height: 2px; background: var(--primary); }
+.toggle-mark::after { transform: rotate(90deg); }
+.price-group[open] .toggle-mark::after { display: none; }
+.price-body { padding: 0 24px 16px; }
+.price-body > p { padding: 16px 0; border-top: 1px solid var(--line); }
+table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 14px; line-height: 1.8; }
+th, td { border-top: 1px solid var(--line); padding-block: 12px; }
+th { text-align: left; font-weight: 400; overflow-wrap: anywhere; }
+thead th { color: var(--muted); font-size: 12px; }
+th:first-child { padding-right: 12px; }
+th:last-child, td { width: 88px; text-align: right; white-space: nowrap; }
+td { font-variant-numeric: tabular-nums; font-weight: 500; }
+.lash-card { display: grid; gap: 24px; padding: 32px 24px; border: 1px solid var(--line); }
+.lash-heading h2 { margin-top: 8px; font-size: 26px; }
+.lash-price { margin-top: 16px; font-weight: 700; color: var(--primary); }
+.lash-price .number { font-size: 36px; font-weight: 600; letter-spacing: -.03em; }
+.tax { font-size: 14px; font-weight: 400; }
+.lash-description p { margin-bottom: 24px; }
+.lash-description .button { width: 100%; }
+
+/* 選び方・スタッフ・商品 */
+.standard-card { display: grid; overflow: clip; }
+.standard-card > img { height: 100%; aspect-ratio: 4 / 3; }
+.standard-content { padding: 32px 24px; }
+.standard-content h2 { font-size: 26px; }
+.standard-content p { margin-top: 24px; color: var(--muted); }
+.staff-list { display: grid; grid-auto-flow: column; grid-auto-columns: 78%; align-items: stretch; gap: 16px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding: 8px 0 24px; scrollbar-color: var(--accent) var(--line); scrollbar-width: thin; }
+.staff-card { min-width: 0; scroll-snap-align: start; overflow: clip; }
+.staff-card > img { aspect-ratio: 3 / 4; }
+.staff-content { padding: 16px 24px 24px; }
+.staff-content h3 { font-size: 26px; font-weight: 600; }
+.staff-content p { margin-top: 4px; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+.products-card { display: grid; overflow: clip; }
+.products-content { padding: 32px 24px; min-width: 0; }
+.products-content > p { color: var(--muted); }
+.product-tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 24px 0 0; padding: 0; }
+.product-tags li { max-width: 100%; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--background); color: var(--muted); font-size: 13px; line-height: 1.8; overflow-wrap: anywhere; }
+.products-card > img { height: 100%; aspect-ratio: 4 / 3; }
+
+/* 予約・店舗情報 */
+.reserve-grid { display: grid; gap: 24px; }
+.reservation-card, .holiday-card { padding: 32px 24px; }
+.reservation-card { text-align: center; }
+.phone-number { display: flex; justify-content: center; align-items: center; min-height: 48px; margin-top: 24px; font-size: clamp(25px, 6.9vw, 40px); font-weight: 600; line-height: 1.4; letter-spacing: -.04em; color: var(--primary); white-space: nowrap; }
+.reception-hours { margin-top: 8px; color: var(--muted); font-size: 14px; }
+.reservation-card .button { width: 100%; margin-top: 24px; }
+.reservation-note { margin-top: 24px; text-align: left; }
+.holiday-card h3 { margin-bottom: 24px; }
+.holiday-list { margin-bottom: 24px; }
+.holiday-list > div + div { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+.holiday-list dt { color: var(--muted); font-size: 14px; }
+.holiday-list dd { margin-top: 4px; font-weight: 700; }
+.text-link { display: inline-flex; align-items: center; justify-content: space-between; min-height: 44px; gap: 24px; margin-top: 8px; color: var(--primary); text-decoration: underline; text-underline-offset: 4px; }
+.access-card { display: grid; overflow: clip; }
+.access-photo > img { height: 100%; aspect-ratio: 1400 / 889; }
+.access-content { padding: 24px; min-width: 0; }
+.access-list > div { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 16px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.access-list > div:first-child { padding-top: 0; }
+.access-list dt { color: var(--muted); font-size: 14px; }
+.access-list dd { min-width: 0; overflow-wrap: anywhere; }
+.access-list a { display: inline-flex; align-items: center; min-height: 44px; color: var(--primary); text-decoration: underline; text-underline-offset: 4px; }
+.access-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.access-actions .button { width: 100%; padding-inline: 16px; font-size: 14px; }
+.site-footer { display: flex; flex-direction: column; gap: 32px; margin-top: 64px; padding-block: 32px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+.footer-brand .brand-name { margin-bottom: 16px; color: var(--text); }
+.footer-brand > a { display: inline-flex; align-items: center; min-height: 44px; }
+.site-footer > small { font-size: 12px; }
+.mobile-call { position: fixed; z-index: 20; bottom: 0; left: 0; right: 0; padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); background: var(--background); }
+.mobile-call .button { display: flex; width: 100%; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+@media (hover: hover) {
+  .button-primary:hover { background: #263e30; box-shadow: 0 4px 16px rgba(47, 74, 58, .16); }
+  .button-secondary:hover, .quick-card:hover { background: #f6f8f4; border-color: var(--accent); }
+  .header-nav a:hover, .text-link:hover { color: var(--primary); text-decoration: underline; text-underline-offset: 6px; }
+  .price-group summary:hover { background: #f6f8f4; border-radius: var(--radius); }
+}
+
+@media (min-width: 768px) {
+  :root { --header-height: 96px; }
+  html { scroll-padding-bottom: 24px; }
+  body { padding-bottom: 0; }
+  .container { width: calc(100% - 64px); }
+  .section { padding-top: 80px; }
+  h2 { font-size: 36px; }
+  .header-inner { gap: 24px; }
+  .brand-name { font-size: 40px; }
+  .header-nav { display: flex; align-items: center; justify-content: flex-end; gap: 16px; margin-left: auto; }
+  .header-nav a { display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; white-space: nowrap; }
+  .header-phone { padding: 12px 16px; }
+  .hero { grid-template-columns: 1fr 1fr; align-items: center; gap: 32px; padding-top: 48px; }
+  .hero-content { grid-row: 1; grid-column: 1; }
+  .hero-photo { grid-column: 2; grid-row: 1; }
+  .hero-photo img { aspect-ratio: 4 / 5; }
+  .hero h1 { font-size: 36px; }
+  .hero-description { margin-top: 24px; }
+  .hero-actions .button { flex: 1 1 100%; }
+  .quick-section { padding-top: 48px; }
+  .quick-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  .quick-card { padding: 24px 16px; }
+  .quick-description { font-size: 14px; }
+  .service-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .service-content { padding: 24px; }
+  .service-content h3 { flex-direction: column; align-items: flex-start; gap: 0; }
+  .service-content p { font-size: 14px; }
+  .price-layout { gap: 32px; }
+  .price-body { padding-inline: 32px; }
+  .price-group summary { padding-inline: 32px; }
+  table { font-size: 16px; }
+  th:last-child, td { width: 120px; }
+  .lash-card { grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; padding: 48px; }
+  .lash-heading h2 { font-size: 28px; }
+  .lash-description .button { width: auto; }
+  .standard-card { grid-template-columns: 1fr 1fr; }
+  .standard-content { padding: 40px 32px; }
+  .standard-content h2 { font-size: 28px; }
+  .staff-list { grid-auto-columns: calc((100% - 32px) / 3); }
+  .products-content { padding: 40px; }
+  .products-card > img { max-height: 320px; }
+  .reserve-grid { grid-template-columns: 1fr 1fr; }
+  .reservation-card, .holiday-card { padding: 32px; }
+  .phone-number { font-size: clamp(26px, 3.7vw, 40px); }
+  .access-content { padding: 32px; }
+  .access-list > div { grid-template-columns: 80px minmax(0, 1fr); }
+  .access-actions .button { width: auto; }
+  .site-footer { flex-direction: row; align-items: flex-end; justify-content: space-between; margin-top: 80px; padding-block: 40px; }
+  .mobile-call { display: none; }
+}
+
+@media (min-width: 1100px) {
+  h2 { font-size: 40px; }
+  .header-nav { gap: 32px; }
+  .header-nav a { font-size: 14px; }
+  .header-phone { margin-left: 16px; padding-inline: 24px; }
+  .hero { grid-template-columns: .95fr 1.05fr; gap: 64px; padding-top: 48px; }
+  .hero h1 { font-size: 40px; line-height: 1.7; }
+  .hero-photo img { aspect-ratio: 1 / 1; }
+  .hero-actions { flex-wrap: nowrap; margin-top: 32px; }
+  .hero-actions .button { flex: 1 1 auto; padding-inline: 20px; }
+  .business-info { margin-top: 32px; }
+  .quick-card { padding: 24px; }
+  .quick-description { font-size: 16px; }
+  .quick-description .number { font-size: 24px; }
+  .service-grid { gap: 24px; }
+  .service-content h3 { flex-direction: row; align-items: center; gap: 16px; }
+  .service-content p { font-size: 16px; }
+  .price-layout { grid-template-columns: 280px minmax(0, 1fr); gap: 64px; }
+  .price-intro .section-heading { margin-bottom: 24px; }
+  .lash-heading h2 { font-size: 32px; }
+  .standard-content { align-self: center; padding: 48px; }
+  .standard-content h2 { font-size: 32px; }
+  .staff-list { grid-auto-columns: calc((100% - 64px) / 5); }
+  .staff-content { padding-inline: 16px; }
+  .products-card { grid-template-columns: 1.35fr 1fr; }
+  .products-card > img { max-height: none; }
+  .reservation-card, .holiday-card { padding: 40px; }
+  .access-card { grid-template-columns: 1fr 1fr; }
+  .access-photo > img { aspect-ratio: auto; }
+  .access-content { padding: 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
