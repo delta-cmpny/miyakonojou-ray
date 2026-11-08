@@ -28,7 +28,7 @@
   --accent-d:#1F4159;
 
   --sans-ja: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", YuGothic, "Noto Sans JP", sans-serif;
-  --serif-ja:"Hiragino Mincho ProN", "Yu Mincho", YuMincho, "Noto Serif JP", serif;
+  --serif-ja: "Hiragino Mincho ProN", "Yu Mincho", YuMincho, "Noto Serif JP", "MS PMincho", serif;
   /* v1はセリフ(Cormorant)。v2はサンセリフで字間を広く取る。Webフォントは使わない */
   --sans-en: "Helvetica Neue", Arial, "Hiragino Sans", sans-serif;
 
@@ -47,7 +47,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--sans-ja);
+  font-family: var(--serif-ja);
   font-size: 1rem;
   line-height: 1.95;
   letter-spacing: .03em;
