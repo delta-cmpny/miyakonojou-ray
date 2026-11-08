@@ -1,4 +1,4 @@
-/* 美容室 Ray — ナビの開閉・ヘッダーの影・定休日カレンダー。無くても内容は読める。 */
+/* 美容室 Ray — 目次・写真のクロスフェード・定休日カレンダー。 */
 (function () {
   'use strict';
   var d = document;
@@ -10,6 +10,7 @@
     if (!toggle || !panel) return;
     panel.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.querySelector('.nav-toggle__label').textContent = open ? 'CLOSE' : 'MENU';
   }
   if (toggle && panel) {
     toggle.addEventListener('click', function () { setNav(!panel.classList.contains('is-open')); });
@@ -24,13 +25,36 @@
     });
   }
 
-  // ---- ヘッダーの影 ----
-  var header = d.getElementById('header');
-  if (header) {
-    var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+  // 本文へ移った時やPC幅へ戻った時に、目次の開いた状態を残さない。
+  window.addEventListener('scroll', function () { setNav(false); }, { passive: true });
+  window.matchMedia('(min-width: 900px)').addEventListener('change', function () { setNav(false); });
+  if (panel) panel.addEventListener('focusout', function (e) {
+    if (!panel.contains(e.relatedTarget) && e.relatedTarget !== toggle) setNav(false);
+  });
+
+  // ---- 6秒ごとの写真切り替え。動きを減らす設定では必ず1枚目。 ----
+  var slides = d.querySelectorAll('.hero__slide');
+  var indicators = d.querySelectorAll('.hero__indicators span');
+  var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var slideIndex = 0, slideTimer = null;
+  function showSlide(index) {
+    slideIndex = index;
+    Array.prototype.forEach.call(slides, function (slide, i) {
+      slide.classList.toggle('is-active', i === index);
+      slide.setAttribute('aria-hidden', i === index ? 'false' : 'true');
+      if (indicators[i]) indicators[i].classList.toggle('is-active', i === index);
+    });
   }
+  function setSlideshow() {
+    window.clearInterval(slideTimer);
+    if (motion.matches) showSlide(0);
+    if (slides.length > 1 && !motion.matches && !d.hidden) {
+      slideTimer = window.setInterval(function () { showSlide((slideIndex + 1) % slides.length); }, 6000);
+    }
+  }
+  motion.addEventListener('change', setSlideshow);
+  d.addEventListener('visibilitychange', setSlideshow);
+  setSlideshow();
 
   // ---- 定休日カレンダー(毎週月曜・第3日曜) ----
   var cal = d.querySelector('[data-calendar]');
