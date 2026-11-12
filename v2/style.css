@@ -361,7 +361,29 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   border-block: 1px solid var(--rule); text-decoration: none;
   font-family: var(--serif-ja); font-size: .9rem; letter-spacing: .1em;
 }
-.sec__more-note { margin: .8rem 0 0; font-size: .74rem; color: var(--muted); }
+/* トップから詳細ページへ。押せると分かるよう、青い細枠のボタンにして真ん中に置く。
+   塗りは予約の帯・電話のバーだけにしたいので、触れた時も塗らず、枠を太くして矢印を動かす */
+.sec__cta-note {
+  margin: 2.25rem auto 0; max-width: 34em;
+  text-align: center; font-size: .78rem; line-height: 1.9; color: var(--muted);
+}
+.sec__cta {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 1rem;
+  width: 100%; max-width: 22rem; min-height: 64px;
+  margin: 1.25rem auto 0; padding: .85rem 1.25rem;
+  border: 1px solid var(--accent); background: var(--paper);
+  color: var(--accent); text-decoration: none;
+  transition: border-color .15s, color .15s, box-shadow .15s;
+}
+.sec__cta-en {
+  grid-column: 1; font-family: var(--sans-en); font-size: .64rem;
+  letter-spacing: .26em; text-transform: uppercase; line-height: 1.6;
+}
+.sec__cta-ja { grid-column: 1; font-family: var(--serif-ja); font-size: 1rem; letter-spacing: .1em; line-height: 1.6; }
+.sec__cta-arr { grid-column: 2; grid-row: 1 / span 2; font-family: var(--sans-en); font-size: 1.25rem; transition: transform .2s; }
+.sec__cta:hover, .sec__cta:focus-visible { border-color: var(--accent-d); color: var(--accent-d); box-shadow: inset 0 0 0 1px var(--accent-d); }
+.sec__cta:hover .sec__cta-arr, .sec__cta:focus-visible .sec__cta-arr { transform: translateX(4px); }
+.sec__more-note + .sec__cta, .prods + .sec__cta, .staff + .sec__cta { margin-top: 2.5rem; }
 .sec__back { padding-bottom: var(--gap); }
 .sec__back .sec__more { margin-top: 0; }
 .sec__more--back { justify-content: flex-start; }
