@@ -195,7 +195,7 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 
 /* モバイルでは主要な4項目を常時表示する。全項目の開閉とは独立。 */
 .hd__quick { max-width: 1240px; margin-inline: auto; padding-inline: var(--pad); }
-.hd__quick ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; }
+.hd__quick ul { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; }
 .hd__quick a {
   display: flex; align-items: center; justify-content: center;
   min-height: 44px; color: var(--ink); text-decoration: none;
@@ -727,7 +727,12 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 }
 .marquee:hover .marquee__track,
 .marquee:focus-within .marquee__track,
-.marquee.is-paused .marquee__track { animation-play-state: paused; }
+.marquee.is-paused .marquee__track,
+.marquee-rows:hover .marquee__track,
+.marquee-rows.is-paused .marquee__track { animation-play-state: paused; }
+/* 商品は2段。下の段は逆向き(左→右)に流して左右対称に見せる */
+.marquee--reverse .marquee__track { animation-direction: reverse; }
+.marquee-rows .marquee + .marquee { margin-top: clamp(1.25rem, 4vw, 2rem); }
 /* 止める/動かす。JavaScript が動く時だけ出す。目立たせず右下に小さく */
 .marquee__toggle { display: none; }
 .js .marquee__toggle {
