@@ -549,9 +549,9 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   letter-spacing: .06em;
   color: var(--muted);
 }
-/* 2026-11-12 写真を4枚にしたので、PCは横4列(3列だと1枚余る) */
+/* 2026-11-13 カットの席の2枚を足して6枚になったので、PCは3列×2段に戻した(11-12は4枚で横4列だった) */
 @media (min-width: 760px) {
-  .gal { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .gal { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 /* ------------------------------------------------------------
