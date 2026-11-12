@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>document.documentElement.className+=" js";</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>メニュー・料金｜美容室Ray</title>
+<meta name="description" content="カット、カラー、パーマからエステ、脱毛、育毛まで、美容室Rayのメニュー・料金をご案内します。">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css?v=20261112b">
+</head>
+<body>
+
+<a class="skip" href="#main">本文へスキップ</a>
+
+<header class="hd">
+  <div class="hd__bar">
+    <a class="hd__logo" href="./">Ray<span>MIYAKONOJO</span></a>
+
+    <button class="hd__toggle" type="button" id="navToggle" aria-expanded="false" aria-controls="siteNav">
+      <span class="vh">メニューを開く</span><i></i><i></i>
+    </button>
+
+    <nav class="hd__nav" id="siteNav" aria-label="メインナビゲーション">
+      <ul>
+        <li><a href="./#concept">Concept</a></li>
+        <li><a href="./#service">Service</a></li>
+        <li><a href="menu.html" aria-current="page">Menu</a></li>
+        <li><a href="staff.html">Staff</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="./#gallery">Gallery</a></li>
+        <li><a href="./#news">Schedule</a></li>
+        <li><a href="./#access">Access</a></li>
+      </ul>
+    </nav>
+
+    <a class="hd__cta" href="tel:0986253685">Reserve<span>0986-25-3685</span></a>
+  </div>
+
+  <nav class="hd__quick" aria-label="主要ページ">
+    <ul>
+      <li><a href="menu.html" aria-current="page">Menu</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="./#access">Access</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <section class="sec" id="menu">
+    <h1 class="sec__heading"><span>Menu</span><span class="sec__heading-ja">メニュー・料金</span></h1>
+    <div class="sec__body">
+      <p class="sec__note reveal">表示はすべて税込です。</p>
+
+      <div class="price reveal" id="cut">
+        <h2>Cut <span class="price__ja">/ カット</span></h2>
+        <dl>
+          <div><dt>一般<span>シャンプー・ブロー込み</span></dt><dd>3,600円</dd></div>
+          <div><dt>大学・専門学生</dt><dd>3,300円</dd></div>
+          <div><dt>高校生</dt><dd>2,200円</dd></div>
+          <div><dt>中学生</dt><dd>2,200円</dd></div>
+          <div><dt>小学生以下</dt><dd>1,980円</dd></div>
+          <div><dt>前髪カット</dt><dd>550円</dd></div>
+        </dl>
+      </div>
+
+      <!-- Cut の後は、店の紙のメニュー表の順 (2026-11-11 本人が写真を送った順):
+           リセッター → カラー → メンテナンスカラー → パーマ → ストレート → トリートメント → ヘッドスパ → まつ毛。
+           その後は、エステの冊子(全身脱毛／フォトフェイシャル)のページ順: フォトフェイシャル → 全身脱毛。
+           育毛はどの資料にも料金が無いので、お問い合わせのまま最後に残す。 -->
+      <div class="price reveal" id="resetter">
+        <h2>Resetter <span class="price__ja">/ リセッター</span></h2>
+        <dl>
+          <div><dt>リセッターのみ</dt><dd>2,500円</dd></div>
+          <div><dt>カット＋リセッター<span>カット代別</span></dt><dd>2,000円</dd></div>
+          <div><dt>部分リセッター</dt><dd>1,000円</dd></div>
+        </dl>
+      </div>
+
+      <div class="price reveal" id="color">
+        <h2>Color <span class="price__ja">/ カラー</span></h2>
+        <dl>
+          <div><dt>長さ代（別途）　L</dt><dd>＋550円</dd></div>
+          <div><dt>長さ代（別途）　LL</dt><dd>＋1,100円</dd></div>
+          <div><dt>ベーシックカラー　オシャレ染め<span>ショート</span></dt><dd>6,600円〜</dd></div>
+          <div><dt>ベーシックカラー　グレーカラー<span>ショート</span></dt><dd>5,500円〜</dd></div>
+          <div><dt>マニキュア<span>ショート</span></dt><dd>5,500円〜</dd></div>
+          <div><dt>ブリーチ<span>2回目以降 4,400円〜</span></dt><dd>5,500円〜</dd></div>
+          <div><dt>メッシュ（ハイライト）</dt><dd>4,400円〜</dd></div>
+          <div><dt>リタッチカラー<span>3cm未満</span></dt><dd>5,500円</dd></div>
+          <div><dt>黒染め抜き</dt><dd>5,500円〜</dd></div>
+        </dl>
+        <p class="price__note">シャンプー・ブロー込みの料金です。</p>
+      </div>
+
+      <div class="price reveal" id="maintenance-color">
+        <h2>Maintenance Color <span class="price__ja">/ メンテナンスカラー</span></h2>
+        <dl>
+          <div><dt>メンテナンスカラー</dt><dd>4,400円</dd></div>
+          <div><dt>全体</dt><dd>＋1,100円</dd></div>
+          <div><dt>カット</dt><dd>＋2,200円</dd></div>
+        </dl>
+      </div>
+
+      <div class="price reveal" id="perm">
+        <h2>Perm <span class="price__ja">/ パーマ</span></h2>
+        <dl>
+          <div><dt>ベーシック</dt><dd>7,700円〜</dd></div>
+          <div><dt>メディカルパーマ</dt><dd>8,580円〜</dd></div>
+          <div><dt>デジタルパーマ</dt><dd>11,000円〜</dd></div>
+          <div><dt>デジタルパーマ＋ストレート</dt><dd>14,300円〜</dd></div>
+          <div><dt>部分カール<span>2本・3本〜／カット代別</span></dt><dd>＋2,200円</dd></div>
+          <div><dt>パーマ　メンズ</dt><dd>6,600円〜</dd></div>
+        </dl>
+        <p class="price__note">シャンプー・カット・ブロー込みの料金です。</p>
+      </div>
+
+      <div class="price reveal" id="straight">
+        <h2>Straight <span class="price__ja">/ ストレート</span></h2>
+        <dl>
+          <div><dt>長さ代（別途）　L</dt><dd>＋550円</dd></div>
+          <div><dt>長さ代（別途）　LL</dt><dd>＋1,100円</dd></div>
+          <div><dt>ボリュームダウン</dt><dd>7,700円〜</dd></div>
+          <div><dt>縮毛矯正<span>キラ水込み</span></dt><dd>12,100円〜</dd></div>
+          <div><dt>学生縮毛矯正<span>カット込み</span></dt><dd>11,000円</dd></div>
+          <div><dt>部分ストレート　前髪</dt><dd>3,850円</dd></div>
+          <div><dt>部分ストレート　顔まわり</dt><dd>4,950円〜</dd></div>
+        </dl>
+      </div>
+
+      <div class="price reveal" id="treatment">
+        <h2>Treatment <span class="price__ja">/ トリートメント</span></h2>
+        <dl>
+          <div><dt>長さ代（別途）　L</dt><dd>＋550円</dd></div>
+          <div><dt>長さ代（別途）　LL</dt><dd>＋1,100円</dd></div>
+          <div><dt>キューティック<span>ホームケアなし</span></dt><dd>1,650円</dd></div>
+          <div><dt>キューティック<span>ホームケアあり</span></dt><dd>3,850円</dd></div>
+          <div><dt>サイバーあり<span>長さ関係なし</span></dt><dd>＋1,100円</dd></div>
+          <div><dt>サイバートリートメント A</dt><dd>4,400円〜</dd></div>
+          <div><dt>サイバートリートメント B</dt><dd>5,500円〜</dd></div>
+        </dl>
+      </div>
+
+      <div class="price reveal" id="head-spa">
+        <h2>Head Spa <span class="price__ja">/ ヘッドスパ</span></h2>
+        <dl>
+          <div><dt>炭酸スパ<span>単品</span></dt><dd>2,750円</dd></div>
+        </dl>
+      </div>
+
+      <div class="price reveal" id="eyelash">
+        <h2>Eyelash <span class="price__ja">/ まつ毛</span></h2>
+        <dl>
+          <div><dt>パリジェンヌラッシュリフト</dt><dd>4,400円</dd></div>
+          <div><dt>まつ毛エクステ<span>シングル</span></dt><dd>3,800円</dd></div>
+          <div><dt>まつ毛エクステ<span>ボリュームラッシュ</span></dt><dd>6,000円</dd></div>
+          <div><dt>リペア<span>シングル・3週間以内</span></dt><dd>2,600円</dd></div>
+          <div><dt>リペア<span>ボリュームラッシュ・3週間以内</span></dt><dd>4,600円</dd></div>
+        </dl>
+      </div>
+
+      <div class="price reveal" id="photo-facial">
+        <h2>Photo Facial <span class="price__ja">/ フォトフェイシャル（エステ）</span></h2>
+        <dl>
+          <div><dt>フォトフェイシャル<span>クレンジング→光照射→炭酸パック→マッサージ</span></dt><dd>6,000円</dd></div>
+          <div><dt>モナリフォトフェイシャル<span>クレンジング→洗顔→ピーリング→光照射→マッサージ→マグネットパック（剥がす特殊な磁気パック付き）</span></dt><dd>10,000円</dd></div>
+          <div><dt>モナリエステ<span>クレンジング→洗顔→ピーリング→マッサージ→マグネットパック</span></dt><dd>4,000円</dd></div>
+        </dl>
+        <p class="price__note">特殊な光を当てて、シミ・シワ・たるみ・毛穴の開き・ハリの悩みに働きかけます。料金は1回分です。</p>
+      </div>
+
+      <div class="price reveal" id="hair-removal">
+        <h2>Hair Removal <span class="price__ja">/ 脱毛</span></h2>
+        <dl>
+          <div><dt>ワキ</dt><dd>1,000円</dd></div>
+          <div><dt>乳輪周り</dt><dd>2,000円</dd></div>
+          <div><dt>お腹<span>へそ周り含む</span></dt><dd>2,500円</dd></div>
+          <div><dt>へそ周り</dt><dd>1,000円</dd></div>
+          <div><dt>うなじ</dt><dd>1,000円〜</dd></div>
+          <div><dt>ひじ上</dt><dd>3,000円</dd></div>
+          <div><dt>ひじ下</dt><dd>2,500円</dd></div>
+          <div><dt>手の指甲</dt><dd>1,000円</dd></div>
+          <div><dt>ひざ上</dt><dd>4,000円</dd></div>
+          <div><dt>ひざ下<span>ひざ込み</span></dt><dd>3,500円</dd></div>
+          <div><dt>足の指甲</dt><dd>1,000円</dd></div>
+          <div><dt>背中上</dt><dd>2,500円</dd></div>
+          <div><dt>背中下</dt><dd>2,500円</dd></div>
+          <div><dt>腰</dt><dd>2,000円</dd></div>
+          <div><dt>ヒップ</dt><dd>2,000円</dd></div>
+          <div><dt>口周り</dt><dd>2,000円</dd></div>
+          <div><dt>首・あご・口周り・ほほ</dt><dd>3,000円</dd></div>
+          <div><dt>もみあげ</dt><dd>1,000円</dd></div>
+          <div><dt>鼻下</dt><dd>1,000円</dd></div>
+          <div><dt>顔上</dt><dd>2,500円</dd></div>
+          <div><dt>顔下</dt><dd>2,500円</dd></div>
+          <div><dt>▽ゾーン</dt><dd>2,000円</dd></div>
+          <div><dt>Vライン</dt><dd>2,000円</dd></div>
+          <div><dt>Iライン</dt><dd>3,000円</dd></div>
+          <div><dt>VIO</dt><dd>4,000円</dd></div>
+          <div><dt>ひじ上下＋指<span>セット</span></dt><dd>5,000円</dd></div>
+          <div><dt>ひざ上下＋指<span>セット</span></dt><dd>7,000円</dd></div>
+          <div><dt>背中全体<span>セット</span></dt><dd>4,000円</dd></div>
+          <div><dt>顔全体<span>セット</span></dt><dd>4,000円</dd></div>
+          <div><dt>ひげ<span>メンズ</span></dt><dd>3,000円〜</dd></div>
+          <div><dt>首・あご・口周り・ほほ<span>メンズ</span></dt><dd>3,000円</dd></div>
+          <div><dt>全身脱毛<span>VIO込み</span></dt><dd>30,000円</dd></div>
+        </dl>
+        <p class="price__note">コースではなく、1回ごとのお支払いです。必要な回数だけ通えます。</p>
+        <p class="price__note">ご来店の前日に、施術する所をご自身でシェービング（剃毛）してください。痛みを和らげ、お肌のダメージを防げます。</p>
+        <p class="price__note">エステ・脱毛・まつ毛エクステは、毎週月曜と毎週日曜がお休みです。</p>
+      </div>
+
+      <div class="price reveal" id="hair-growth">
+        <h2>Hair Growth <span class="price__ja">/ 育毛</span></h2>
+        <dl>
+          <div><dt>育毛</dt><dd>お問い合わせ</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <div class="sec__back sec__body"><a class="sec__more sec__more--back" href="./"><span aria-hidden="true">←</span><span>トップへ戻る</span></a></div>
+
+  <section class="sec sec--res" id="reservation">
+    <div class="res">
+      <p class="res__en">Reservation</p>
+      <p class="res__txt">ご予約・ご相談はお電話で承っています。施術中は出られないことがありますので、その際は少し時間をおいておかけ直しください。</p>
+      <a class="res__tel" href="tel:0986253685">0986-25-3685</a>
+      <p class="res__hours">受付 9:00〜19:00／定休 月曜・第3日曜</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ft">
+  <div class="ft__inner">
+    <p class="ft__logo">Ray</p>
+    <address>
+      <p>〒885-0051　宮崎県都城市蔵原町13-11</p>
+      <a href="tel:0986253685">0986-25-3685</a>
+    </address>
+    <ul class="ft__sns">
+      <li><a href="https://www.instagram.com/ray19961004" target="_blank" rel="noopener">
+        <span class="vh">Instagram</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+          <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+          <circle cx="17.4" cy="6.6" r="1.15" fill="currentColor"/>
+        </svg></a></li>
+      <li><a href="https://www.facebook.com/Ray-426782200786898/" target="_blank" rel="noopener">
+        <span class="vh">Facebook</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="9.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M13.5 19v-6.2h2.05l.31-2.4H13.5V8.86c0-.7.19-1.17 1.19-1.17h1.27V5.54c-.22-.03-.98-.09-1.86-.09-1.84 0-3.1 1.12-3.1 3.19v1.76H8.93v2.4H11V19z" fill="currentColor"/>
+        </svg></a></li>
+    </ul>
+    <p class="ft__copy">&copy; 美容室Ray</p>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a href="tel:0986253685">電話で予約する<span>0986-25-3685</span></a>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('navToggle');
+  var nav = document.getElementById('siteNav');
+  if (btn && nav) {
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      btn.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) {
+        nav.classList.remove('is-open');
+        btn.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // スクロールで要素を出す
+  var targets = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    Array.prototype.forEach.call(targets, function (el) { el.classList.add('is-in'); });
+  } else {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+    Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+  }
+})();
+</script>
+
+</body>
+</html>

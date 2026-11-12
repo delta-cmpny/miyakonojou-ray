@@ -8,7 +8,7 @@
 
    v1(NANEA / Liner / STILL 参照)との違い:
      - 写真に文字を重ねない。白地に文字、その下に写真   … hairmada
-     - メニュー価格をトップページに全部載せる            … elan
+     - メニュー価格は細い罫線の料金表で載せる            … elan
      - Newsを日付つきのリストで複数件                   … elan
      - 文章を削らず、丁寧に語る                         … THE SALON
      - 予約は枠線ではなく塗りのボタン                   … hairmada
@@ -40,7 +40,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 8rem; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
@@ -184,12 +184,33 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   .hd__cta { order: 2; }
 }
 @media (min-width: 900px) {
+  html { scroll-padding-top: 6rem; }
   .hd__toggle { display: none; }
   .hd__nav { order: 2; }
   .hd__nav ul { display: flex; align-items: center; gap: clamp(.9rem, 2vw, 1.7rem); }
   .hd__nav a { border-bottom: none; min-height: 44px; padding-inline: .35rem; font-size: .82rem; }
   .hd__nav a:hover { color: var(--accent); }
   .hd__cta { order: 3; margin-left: 1.25rem; }
+}
+
+/* モバイルでは主要な4項目を常時表示する。全項目の開閉とは独立。 */
+.hd__quick { max-width: 1240px; margin-inline: auto; padding-inline: var(--pad); }
+.hd__quick ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; }
+.hd__quick a {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 44px; color: var(--ink); text-decoration: none;
+  font-family: var(--sans-en); font-size: .68rem; letter-spacing: .12em;
+}
+.hd__nav a[aria-current="page"], .hd__quick a[aria-current="page"] {
+  text-decoration: underline; text-underline-offset: .5em; text-decoration-thickness: 1px;
+}
+@media (min-width: 900px) { .hd__quick { display: none; } }
+/* PC表示に切り替わる幅でも、8項目と予約を同じ段に収める。 */
+@media (min-width: 900px) and (max-width: 1100px) {
+  .hd__bar { gap: .5rem; }
+  .hd__nav ul { gap: .4rem; }
+  .hd__nav a { padding-inline: .2rem; font-size: .68rem; letter-spacing: .1em; }
+  .hd__cta { margin-left: 0; padding-inline: .7rem; }
 }
 
 /* ------------------------------------------------------------
@@ -319,6 +340,34 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   text-align: center;
 }
 
+/* 詳細ページの見出しと、余白・罫線で示すリンク。 */
+.sec__heading {
+  margin: 0 auto clamp(2.5rem, 7vw, 4rem); padding-bottom: 1.5rem;
+  position: relative; text-align: center; font-weight: 400;
+  font-family: var(--sans-en); font-size: 1.25rem; letter-spacing: .32em;
+  color: var(--accent);
+}
+.sec__heading::after {
+  content: ""; position: absolute; left: 50%; bottom: 0;
+  width: 1px; height: 1rem; background: var(--rule);
+}
+.sec__heading-ja {
+  display: block; margin-top: .5rem; font-family: var(--serif-ja);
+  font-size: .85rem; letter-spacing: .12em; color: var(--muted);
+}
+.sec__more {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  min-height: 44px; margin-top: 2rem; padding-block: .75rem;
+  border-block: 1px solid var(--rule); text-decoration: none;
+  font-family: var(--serif-ja); font-size: .9rem; letter-spacing: .1em;
+}
+.sec__more-note { margin: .8rem 0 0; font-size: .74rem; color: var(--muted); }
+.sec__back { padding-bottom: var(--gap); }
+.sec__back .sec__more { margin-top: 0; }
+.sec__more--back { justify-content: flex-start; }
+.staff.staff--one { grid-template-columns: minmax(0, 320px); justify-content: center; }
+.prods.prods--two { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 640px; margin-inline: auto; }
+
 /* コンセプト */
 .lead {
   font-family: var(--serif-ja);
@@ -361,11 +410,11 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 }
 
 /* ------------------------------------------------------------
-   価格表: トップページに全部載せる (elanの型)
+   価格表: トップはカットのみ、全メニューは詳細ページへ (elanの型)
    ------------------------------------------------------------ */
 
 .price + .price { margin-top: clamp(2.5rem, 8vw, 3.5rem); }
-.price h3 {
+.price h2, .price h3 {
   margin: 0 0 .25rem;
   padding-bottom: .6rem;
   border-bottom: 1px solid var(--ink);
@@ -626,7 +675,7 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 }
 
 /* ------------------------------------------------------------
-   Staff: v1のスタッフページと同じ内容を、1ページ構成の中に置く
+   Staff: トップはオーナー、詳細ページに全スタッフ
    ------------------------------------------------------------ */
 
 .staff {
