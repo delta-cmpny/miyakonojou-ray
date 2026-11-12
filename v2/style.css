@@ -374,6 +374,14 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   font-size: 1.05rem;
   letter-spacing: .18em;
 }
+/* 英字の見出しの後ろに添える日本語(「Cut / カット」)。日本語は明朝で、
+   狭い画面では「/ カット」ごと次の行へ送る */
+.price__ja {
+  display: inline-block;
+  font-family: var(--serif-ja);
+  font-size: .92em;
+  letter-spacing: .1em;
+}
 .price dl { margin: 0; }
 .price dl > div {
   display: flex;
