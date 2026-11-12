@@ -436,7 +436,7 @@ a:hover, a:focus-visible { color: var(--accent-d); }
    ------------------------------------------------------------ */
 
 .price + .price { margin-top: clamp(2.5rem, 8vw, 3.5rem); }
-.price h2, .price h3 {
+.price h2, .price h3, .prods-group > h2 {
   margin: 0 0 .25rem;
   padding-bottom: .6rem;
   border-bottom: 1px solid var(--ink);
@@ -755,4 +755,68 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   line-height: 1.7;
   letter-spacing: .06em;
   color: var(--muted);
+}
+/* 商品名・容量・値段(2026-11-12 店頭の商品を値段つきで並べた) */
+.prods p.prods__name { color: var(--ink); }
+.prods__name span { display: block; font-size: .68rem; color: var(--muted); }
+.prods p.prods__price {
+  margin-top: .25rem;
+  font-family: var(--sans-en);
+  font-size: .85rem;
+  letter-spacing: .02em;
+  color: var(--ink);
+}
+.prods__price small { font-family: var(--serif-ja); font-size: .7rem; color: var(--muted); }
+.sec__note.sec__note--sub { margin-top: -1.25rem; font-size: .76rem; }
+/* 取扱い商品のジャンル。見出しはメニューの料金表と同じ形(英字 / 日本語と下の線) */
+.prods-group + .prods-group { margin-top: clamp(3rem, 9vw, 4.5rem); }
+.prods-group .prods { margin-top: 1.5rem; }
+/* 見出しの日本語は「・」の所でだけ折り返す(言葉の途中で切らない) */
+.prods-group > h2 .price__ja { word-break: keep-all; }
+/* 取扱い商品のジャンルへ飛ぶ一覧。上の帯(ヘッダー)の3段目に入れてあり、帯ごと上に止まるので
+   ページの最後までスクロールしても消えない。スマホは横にスクロール、PCは真ん中にそろえて見せる */
+.prods-nav {
+  position: relative;
+  border-top: 1px solid var(--rule);
+  background: var(--bg);
+}
+.prods-nav ul {
+  display: flex;
+  gap: 0 1.1rem;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+  list-style: none;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.prods-nav ul::-webkit-scrollbar { display: none; }
+.prods-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--serif-ja);
+  font-size: .82rem;
+  letter-spacing: .08em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.prods-nav a:hover, .prods-nav a:focus-visible { color: var(--accent); }
+/* 右の端を薄くして、横にまだ続くと分かるようにする(スマホ) */
+.prods-nav::after {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 2.5rem;
+  background: linear-gradient(to right, rgba(247, 243, 236, 0), var(--bg));
+  pointer-events: none;
+}
+/* ジャンルの見出しが、ヘッダーとこの一覧の下に隠れないように(html の scroll-padding-top に足す分) */
+.prods-group { scroll-margin-top: calc(var(--pn-h, 46px) + .75rem); }
+@media (min-width: 900px) {
+  .prods-nav ul { flex-wrap: wrap; justify-content: center; overflow-x: visible; gap: 0 .7rem; }
+  .prods-nav a { font-size: .78rem; letter-spacing: .04em; }
+  .prods-nav::after { display: none; }
 }
