@@ -406,6 +406,14 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   margin: 0 auto 1.5rem;
 }
 #concept p:last-child { margin-bottom: 0; }
+/* コンセプトの写真(夜の外観)。スマホは文の下、横幅が取れたら文の右に並べる */
+.concept__text { min-width: 0; }
+.concept__photo { margin: clamp(2.5rem, 7vw, 3.5rem) 0 0; }
+.concept__photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+@media (min-width: 860px) {
+  .concept { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2.5rem, 5vw, 4rem); align-items: center; }
+  .concept__photo { margin: 0; }
+}
 
 /* 特徴を番号つきで並べる (THE SALONの型) */
 .feat { list-style: none; margin: 0; padding: 0; }
@@ -571,7 +579,8 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   min-height: 44px;   /* タップ領域 */
 }
 
-.acc__photo { margin: clamp(2rem, 6vw, 0) 0 0; }
+/* clamp の最大を 0(単位なし)にしていて全体が無効になり、ブラウザの既定の左右40pxの余白が付いていた(2026-11-12 直した) */
+.acc__photo { margin: clamp(2rem, 6vw, 3rem) 0 0; }
 .acc__photo figcaption {
   margin-top: .6rem;
   font-size: .76rem;
