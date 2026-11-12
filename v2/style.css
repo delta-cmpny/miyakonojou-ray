@@ -193,6 +193,30 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   .hd__cta { order: 3; margin-left: 1.25rem; }
 }
 
+/* 2026-11-12 予約の隣の Instagram・Facebook のアイコン。予約のボタンと同じ青 */
+.hd__sns { display: flex; list-style: none; margin: 0; padding: 0; }
+.hd__sns a {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; min-height: 44px; color: var(--accent);
+}
+.hd__sns a:hover, .hd__sns a:focus-visible { color: var(--accent-d); }
+.hd__sns svg { width: 1.3rem; height: 1.3rem; display: block; }
+@media (max-width: 899px) {
+  .hd__sns { order: 2; }               /* 予約(order 2)の左。HTMLの順で前に来る */
+  .hd__bar { column-gap: .5rem; }
+  .hd__cta { padding-inline: .8rem; }
+}
+/* 360px未満(初代iPhone SEなど)は1段に収まらないので、ロゴの下の小さな英字を外し、アイコンと予約を少し詰める */
+@media (max-width: 359px) {
+  .hd__logo span { display: none; }
+  .hd__sns a { width: 32px; }
+  .hd__cta { padding-inline: .55rem; }
+}
+@media (min-width: 900px) {
+  .hd__sns { order: 3; margin-left: 1rem; }
+  .hd__cta { margin-left: .25rem; }
+}
+
 /* モバイルでは主要な4項目を常時表示する。全項目の開閉とは独立。 */
 .hd__quick { max-width: 1240px; margin-inline: auto; padding-inline: var(--pad); }
 .hd__quick ul { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; }
@@ -211,6 +235,13 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   .hd__nav ul { gap: .4rem; }
   .hd__nav a { padding-inline: .2rem; font-size: .68rem; letter-spacing: .1em; }
   .hd__cta { margin-left: 0; padding-inline: .7rem; }
+  .hd__sns { margin-left: .25rem; }
+}
+/* 1101〜1259px も、アイコンを足した分だけ詰めないと予約が2段目に落ちる(2026-11-12 Codex の見直しで分かった) */
+@media (min-width: 1101px) and (max-width: 1259px) {
+  .hd__nav ul { gap: 1rem; }
+  .hd__nav a { padding-inline: .2rem; }
+  .hd__sns { margin-left: .25rem; }
 }
 
 /* ------------------------------------------------------------
