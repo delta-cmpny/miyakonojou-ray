@@ -518,8 +518,9 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   letter-spacing: .06em;
   color: var(--muted);
 }
+/* 2026-11-12 写真を4枚にしたので、PCは横4列(3列だと1枚余る) */
 @media (min-width: 760px) {
-  .gal { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .gal { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
 /* ------------------------------------------------------------
@@ -545,6 +546,8 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   padding-top: .25em;
 }
 .news__txt { flex: 1 1 14em; margin: 0; font-size: .92rem; }
+.news__sub { display: block; margin-top: .3rem; font-size: .8rem; line-height: 1.7; color: var(--muted); }
+.news__keep { display: inline-block; } /* スマホで「月/曜」と割れないよう、曜日はひとかたまりで折る */
 
 /* ------------------------------------------------------------
    アクセス
