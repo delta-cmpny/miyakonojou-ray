@@ -555,6 +555,28 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 }
 
 /* ------------------------------------------------------------
+   エステ・全身脱毛(2026-11-13 本人の頼み。店頭のチラシの文と写真)
+   白い紙の色の段にして、前後の段(アイボリー・一段濃い帯)と分ける
+   ------------------------------------------------------------ */
+
+.sec--paper { background: var(--paper); }
+.esth { display: grid; gap: clamp(3rem, 9vw, 4rem); }
+.esth__item { min-width: 0; }   /* 2列の時、長い品目名で列をはみ出させない */
+.esth__photo { margin: 0 0 1.5rem; }
+.esth__photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.esth__lead {
+  margin: .9rem 0 .4rem;
+  font-family: var(--serif-ja);
+  font-size: .95rem;
+  letter-spacing: .08em;
+  color: var(--accent);
+}
+.esth__txt { margin: 0 0 .75rem; font-size: .88rem; }
+@media (min-width: 860px) {
+  .esth { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 4vw, 3.5rem); }
+}
+
+/* ------------------------------------------------------------
    News: 日付つきのリスト (elanの型)
    ------------------------------------------------------------ */
 
