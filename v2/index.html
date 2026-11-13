@@ -8,7 +8,7 @@
 <meta name="description" content="宮崎県都城市蔵原町の美容室Ray。髪と頭皮に負担をかけないことを基準に薬剤と商品を選んでいます。カット3,600円〜。まつ毛、エステ、脱毛まで女性スタッフだけでお受けしています。">
 <meta name="robots" content="noindex">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=20261113b">
+<link rel="stylesheet" href="style.css?v=20261113c">
 </head>
 <body>
 
@@ -151,12 +151,14 @@
     <p class="sec__label"><span>Esthetic</span></p>
     <div class="sec__body">
       <p class="sec__note reveal">エステと全身脱毛は、店内の個室で女性スタッフがお受けします。</p>
+      <!-- 2026-11-13 本人の頼み:全身脱毛のイラストはトップでは出さない(メニューのページへ)。
+           チラシの表紙の写真は、全身脱毛・フォトフェイシャル両方の表紙なので、段の頭の1枚にした -->
+      <figure class="esth__visual reveal">
+        <img src="assets/esthetic-facial.webp" width="960" height="720" loading="lazy" decoding="async"
+             alt="エステの施術台で、目を閉じてくつろぐ女性">
+      </figure>
       <div class="esth">
         <div class="esth__item reveal">
-          <figure class="esth__photo">
-            <img src="assets/esthetic-facial.webp" width="960" height="720" loading="lazy" decoding="async"
-                 alt="エステの施術台で、目を閉じてくつろぐ女性">
-          </figure>
           <div class="price">
             <h3>Photo Facial <span class="price__ja">/ フォトフェイシャル（エステ）</span></h3>
             <p class="esth__lead">シミ・シワ・たるみ・毛穴の開き・ハリ</p>
@@ -170,10 +172,6 @@
           </div>
         </div>
         <div class="esth__item reveal">
-          <figure class="esth__photo">
-            <img src="assets/hair-removal-body.webp" width="960" height="720" loading="lazy" decoding="async"
-                 alt="全身脱毛で施術できる部位のイラスト。顔・腕・胸・お腹・背中・ひざ・足の指・VIO">
-          </figure>
           <div class="price">
             <h3>Hair Removal <span class="price__ja">/ 全身脱毛</span></h3>
             <p class="esth__lead">純国産の高速美容ライト脱毛機</p>

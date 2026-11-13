@@ -562,8 +562,15 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 .sec--paper { background: var(--paper); }
 .esth { display: grid; gap: clamp(3rem, 9vw, 4rem); }
 .esth__item { min-width: 0; }   /* 2列の時、長い品目名で列をはみ出させない */
-.esth__photo { margin: 0 0 1.5rem; }
-.esth__photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+/* 段の頭の写真(チラシの表紙)。PCは横長に切って、顔と手が入る位置にする */
+.esth__visual { margin: 0 0 clamp(2.5rem, 7vw, 3.5rem); }
+.esth__visual img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+@media (min-width: 860px) {
+  .esth__visual img { aspect-ratio: 16 / 9; object-position: 50% 80%; }
+}
+/* メニューのページの脱毛の部位のイラスト(2026-11-13 トップから移した) */
+.price__fig { max-width: 560px; margin: 1.25rem auto .5rem; }
+.price__fig img { width: 100%; height: auto; }
 .esth__lead {
   margin: .9rem 0 .4rem;
   font-family: var(--serif-ja);
