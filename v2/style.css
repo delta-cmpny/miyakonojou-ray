@@ -78,59 +78,72 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 
 /* ------------------------------------------------------------
    始まりの演出(2026-11-15 本人の頼み。トップだけ・最初の1回だけ)
-   0.1〜0.8秒 「Ray」が浮かぶ → 0.9〜1.9秒 ハサミが左から右へ横に切る
-   → 2.1〜2.9秒 切れた上と下が開いてページが出る。押すと飛ばせる
+   0.1〜0.8秒 「Ray」が浮かぶ → 0.65秒 ハサミが文字の右端に現れ、1.0秒〜 右から左へゆっくりチョキチョキ切る
+   (文字の右端から左端までは、どの画面の幅でも1.9秒。左端で消える)→ 切れた下の文字と髪が、通った所から順にパラパラ落ちる
+   → 3.9〜4.5秒 全体が消えてページが出る。押すと飛ばせる
    ------------------------------------------------------------ */
 
 .intro { display: none; }
 .has-intro .intro {
+  --fs: clamp(4.5rem, 24vw, 9rem);
   display: block; position: fixed; inset: 0; z-index: 200; cursor: pointer; overflow: hidden;
-  animation: intro-gone 0s linear 3s forwards;   /* JavaScriptが動かなくても、3秒で消えて押せるようになる */
+  background: var(--bg);
+  animation: intro-out 0.6s ease 3.9s forwards;   /* JavaScriptが動かなくても、4.5秒で消えて押せるようになる */
 }
-.intro__half { position: absolute; left: 0; right: 0; height: 50%; overflow: hidden; background: var(--bg); }
-.intro__half--top { top: 0; animation: intro-up .8s cubic-bezier(.7, 0, .2, 1) 2.1s forwards; }
-.intro__half--bottom { bottom: 0; animation: intro-down .8s cubic-bezier(.7, 0, .2, 1) 2.1s forwards; }
-/* 上と下に同じ絵を置き、それぞれ半分だけ見せる(切れ目が文字の真ん中に来る) */
-.intro__stage { position: absolute; left: 0; right: 0; height: 200%; display: grid; place-items: center; }
-.intro__half--top .intro__stage { top: 0; }
-.intro__half--bottom .intro__stage { bottom: 0; }
+.intro__stage { position: absolute; inset: 0; display: grid; place-items: center; }
+/* 切れ目(箱の上から60%)が画面の真ん中に来るよう、少し上げる。60%は小文字の高さの真ん中 */
 .intro__logo {
-  position: relative; top: -.1em; margin: 0;   /* 切れ目が文字の真ん中(小文字の高さの真ん中)を通るように、少し上げる */
-  font-family: var(--serif-ja); font-size: clamp(4.5rem, 24vw, 9rem); line-height: 1;
+  position: relative; top: -.1em;
+  font-family: var(--serif-ja); font-size: var(--fs); line-height: 1;
   letter-spacing: .1em; text-indent: .1em; color: var(--ink);
   opacity: 0; transform: translateY(.08em); animation: intro-in .7s ease .1s forwards;
 }
-.intro__logo span {
-  position: absolute; left: 0; right: 0; top: calc(100% + .6em);
-  font-family: var(--sans-en); font-size: .12em; letter-spacing: .34em; text-indent: .34em;
-  text-align: center; color: var(--muted);
+.intro__word { margin: 0; white-space: nowrap; }
+.intro__word--top { clip-path: inset(0 0 40% 0); }
+/* 下の半分を細い短冊に分け、ハサミが通った所から順に、ゆらゆら回りながら落とす */
+.intro__piece {
+  position: absolute; inset: 0; clip-path: inset(60% var(--r) 0 var(--l)); transform-origin: 50% 70%;
+  animation: intro-fall var(--t) cubic-bezier(.5, 0, .85, .55) var(--d) forwards;
 }
-.intro__cut {
-  position: absolute; left: 0; right: 0; top: 50%; height: 1px; margin-top: -.5px;
-  background: var(--accent); transform: scaleX(0); transform-origin: left center;
-  animation: intro-cut 1s cubic-bezier(.45, .05, .55, .95) .9s forwards, intro-fade .25s ease 2.1s forwards;
+/* 切った髪の毛のような細い線 */
+.intro__hair {
+  position: absolute; left: var(--x); top: 60%; width: 1.5px; height: var(--len);
+  background: var(--ink); border-radius: 1px; opacity: 0; transform-origin: 50% 0;
+  animation: intro-hair var(--t) cubic-bezier(.5, 0, .85, .55) var(--d) forwards;
 }
-.intro__scissors {
-  position: absolute; left: 0; top: 50%; width: clamp(64px, 16vw, 96px); height: auto; overflow: visible;
-  color: var(--accent); transform: translate(-100%, -50%);
-  animation: intro-travel 1s cubic-bezier(.45, .05, .55, .95) .9s forwards;
+/* ハサミ(青い線画。2026-11-15 本人「もとのハサミでいい」)。左右を反転して刃を左に向ける。支点は絵の左から46.8%。
+   切った後の線は引かない(本人「切った後に線が残ってるけどそれいらない」) */
+.intro__cutter {
+  position: absolute; left: 0; top: 50%; width: clamp(64px, 16vw, 96px); opacity: 0;
+  transform: translate(calc(50vw + var(--fs) * 1.05 - 46.8% + 28px), -50%);
+  animation: intro-travel 2.60s linear 0.65s forwards;
 }
-/* 刃を開いて閉じる(チョキチョキ)。支点は絵の(66, 30) */
+.intro__scissors { display: block; width: 100%; height: auto; overflow: visible; color: var(--accent); transform: scaleX(-1); }
+/* 刃を大きく開いて閉じる(チョキチョキ)。支点は絵の(66, 30) */
 .intro__blade { transform-box: view-box; transform-origin: 66px 30px; }
-.intro__blade--a { transform: rotate(-14deg); animation: intro-snip .2s ease-in-out .9s 5 alternate forwards; }
-.intro__blade--b { transform: rotate(14deg); animation: intro-snip .2s ease-in-out .9s 5 alternate forwards; }
-.has-intro .intro.is-skipped .intro__half--top { animation: intro-up .4s ease forwards; }
-.has-intro .intro.is-skipped .intro__half--bottom { animation: intro-down .4s ease forwards; }
-.has-intro .intro.is-skipped .intro__cut,
-.has-intro .intro.is-skipped .intro__scissors { animation: intro-fade .2s ease forwards; }
+.intro__blade--a { transform: rotate(-24deg); animation: intro-snip-a 0.38s ease-in-out 1.0s 5 both; }
+.intro__blade--b { transform: rotate(24deg); animation: intro-snip-b 0.38s ease-in-out 1.0s 5 both; }
+.has-intro .intro.is-skipped { animation: intro-out .3s ease forwards; }
 @keyframes intro-in { to { opacity: 1; transform: none; } }
-@keyframes intro-cut { to { transform: scaleX(1); } }
-@keyframes intro-travel { to { transform: translate(100vw, -50%); } }
-@keyframes intro-snip { to { transform: rotate(0deg); } }
-@keyframes intro-up { to { transform: translateY(-100%); } }
-@keyframes intro-down { to { transform: translateY(100%); } }
-@keyframes intro-fade { to { opacity: 0; } }
-@keyframes intro-gone { to { visibility: hidden; } }
+@keyframes intro-travel {
+  0% { opacity: 0; transform: translate(calc(50vw + var(--fs) * 1.05 - 46.8% + 28px), -50%); animation-timing-function: ease-out; }
+  13.46% { opacity: 1; transform: translate(calc(50vw + var(--fs) * 1.05 - 46.8%), -50%); animation-timing-function: linear; }
+  86.54% { opacity: 1; transform: translate(calc(50vw - var(--fs) * 1.05 - 46.8%), -50%); animation-timing-function: ease-in; }
+  100% { opacity: 0; transform: translate(calc(50vw - var(--fs) * 1.05 - 46.8% - 28px), -50%); }
+}
+@keyframes intro-snip-a { 0%, 100% { transform: rotate(-24deg); } 50% { transform: rotate(0deg); } }
+@keyframes intro-snip-b { 0%, 100% { transform: rotate(24deg); } 50% { transform: rotate(0deg); } }
+@keyframes intro-fall {
+  0% { transform: none; opacity: 1; }
+  35% { transform: translate(calc(var(--dx) * -.6), calc(var(--fall) * .16)) rotate(calc(var(--rot) * -.4)); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--fall)) rotate(var(--rot)); opacity: 0; }
+}
+@keyframes intro-hair {
+  0% { transform: rotate(var(--r0)); opacity: .8; }
+  40% { transform: translate(calc(var(--dx) * -.6), calc(var(--fall) * .2)) rotate(calc(var(--rot) * -.5)); opacity: .8; }
+  100% { transform: translate(var(--dx), var(--fall)) rotate(var(--rot)); opacity: 0; }
+}
+@keyframes intro-out { to { opacity: 0; visibility: hidden; } }
 
 /* ------------------------------------------------------------
    ヘッダー

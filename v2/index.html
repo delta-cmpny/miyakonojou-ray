@@ -10,29 +10,56 @@
 <meta name="description" content="宮崎県都城市蔵原町の美容室Ray。髪と頭皮に負担をかけないことを基準に薬剤と商品を選んでいます。カット3,600円〜。まつ毛、エステ、脱毛まで女性スタッフだけでお受けしています。">
 <meta name="robots" content="noindex">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=20261115a">
+<link rel="stylesheet" href="style.css?v=20261115d">
 </head>
 <body>
 
-<!-- 2026-11-15 本人の頼み:始まりの演出。「Ray」の文字をハサミが横に切り、切れた上と下が開いてページが出る
-     (&&のパン屋さんと同じ作り:最初の1回だけ・押すと飛ばせる・JavaScriptが動かなくても3秒で消える) -->
+<!-- 2026-11-15 本人の頼み:始まりの演出。ハサミ(青い線画)が「Ray」の右端に現れ、右から左へゆっくりチョキチョキと
+     真ん中を切り、切れた下の文字が髪を切るようにパラパラ落ちて、ページが出る(約4.5秒)。
+     &&のパン屋さんと同じ作り:最初の1回だけ・押すと飛ばせる・JavaScriptが動かなくても4.5秒で消える -->
 <div class="intro" aria-hidden="true">
-  <div class="intro__half intro__half--top"><div class="intro__stage"><p class="intro__logo">Ray<span>MIYAKONOJO</span></p></div></div>
-  <div class="intro__half intro__half--bottom"><div class="intro__stage"><p class="intro__logo">Ray<span>MIYAKONOJO</span></p></div></div>
-  <div class="intro__cut"></div>
-  <svg class="intro__scissors" viewBox="0 -14 124 88" xmlns="http://www.w3.org/2000/svg">
-    <g class="intro__blade intro__blade--a">
-      <path d="M66 30 C84 25.5 104 24.5 121 27.2 C105 30.2 86 32 66 32.8 Z" fill="currentColor"/>
-      <path d="M68 31.2 L35 41.5" stroke="currentColor" stroke-width="4.2" stroke-linecap="round" fill="none"/>
-      <ellipse cx="23" cy="45" rx="12" ry="8.5" fill="none" stroke="currentColor" stroke-width="3.6"/>
-    </g>
-    <g class="intro__blade intro__blade--b">
-      <path d="M66 30 C84 34.5 104 35.5 121 32.8 C105 29.8 86 28 66 27.2 Z" fill="currentColor"/>
-      <path d="M68 28.8 L35 18.5" stroke="currentColor" stroke-width="4.2" stroke-linecap="round" fill="none"/>
-      <ellipse cx="23" cy="15" rx="12" ry="8.5" fill="none" stroke="currentColor" stroke-width="3.6"/>
-    </g>
-    <circle cx="66" cy="30" r="2.8" fill="#F7F3EC" stroke="currentColor" stroke-width="1.6"/>
-  </svg>
+  <div class="intro__stage">
+    <div class="intro__logo">
+      <p class="intro__word intro__word--top">Ray</p>
+      <p class="intro__word intro__piece" style="--l:0.00%;--r:91.67%;--d:2.87s;--t:1.25s;--dx:17px;--rot:28deg;--fall:49vh">Ray</p>
+      <p class="intro__word intro__piece" style="--l:8.33%;--r:83.33%;--d:2.70s;--t:1.22s;--dx:21px;--rot:26deg;--fall:47vh">Ray</p>
+      <p class="intro__word intro__piece" style="--l:16.67%;--r:75.00%;--d:2.54s;--t:1.05s;--dx:-15px;--rot:-20deg;--fall:67vh">Ray</p>
+      <p class="intro__word intro__piece" style="--l:25.00%;--r:66.67%;--d:2.43s;--t:1.12s;--dx:21px;--rot:11deg;--fall:57vh">Ray</p>
+      <p class="intro__word intro__piece" style="--l:33.33%;--r:58.33%;--d:2.28s;--t:1.19s;--dx:-16px;--rot:-8deg;--fall:68vh">Ray</p>
+      <p class="intro__word intro__piece" style="--l:41.67%;--r:50.00%;--d:2.08s;--t:1.31s;--dx:12px;--rot:31deg;--fall:65vh">Ray</p>
+      <p class="intro__word intro__piece" style="--l:50.00%;--r:41.67%;--d:1.91s;--t:1.29s;--dx:-8px;--rot:-18deg;--fall:47vh">Ray</p>
+      <p class="intro__word intro__piece" style="--l:58.33%;--r:33.33%;--d:1.79s;--t:1.34s;--dx:18px;--rot:29deg;--fall:51vh">Ray</p>
+      <p class="intro__word intro__piece" style="--l:66.67%;--r:25.00%;--d:1.59s;--t:1.32s;--dx:10px;--rot:23deg;--fall:61vh">Ray</p>
+      <p class="intro__word intro__piece" style="--l:75.00%;--r:16.67%;--d:1.43s;--t:1.11s;--dx:-17px;--rot:-28deg;--fall:68vh">Ray</p>
+      <p class="intro__word intro__piece" style="--l:83.33%;--r:8.33%;--d:1.31s;--t:1.11s;--dx:-16px;--rot:-21deg;--fall:49vh">Ray</p>
+      <p class="intro__word intro__piece" style="--l:91.67%;--r:0.00%;--d:1.15s;--t:1.18s;--dx:-21px;--rot:-17deg;--fall:66vh">Ray</p>
+      <i class="intro__hair" style="--x:54.1%;--d:1.89s;--t:1.34s;--len:0.23em;--r0:-7deg;--dx:12px;--rot:81deg;--fall:54vh"></i>
+      <i class="intro__hair" style="--x:75.4%;--d:1.50s;--t:1.45s;--len:0.26em;--r0:36deg;--dx:14px;--rot:79deg;--fall:50vh"></i>
+      <i class="intro__hair" style="--x:68.9%;--d:1.69s;--t:1.32s;--len:0.25em;--r0:8deg;--dx:-21px;--rot:-85deg;--fall:51vh"></i>
+      <i class="intro__hair" style="--x:77.3%;--d:1.48s;--t:1.16s;--len:0.26em;--r0:-1deg;--dx:-15px;--rot:-72deg;--fall:61vh"></i>
+      <i class="intro__hair" style="--x:52.0%;--d:1.93s;--t:1.36s;--len:0.20em;--r0:10deg;--dx:23px;--rot:60deg;--fall:64vh"></i>
+      <i class="intro__hair" style="--x:58.3%;--d:1.84s;--t:1.30s;--len:0.23em;--r0:-4deg;--dx:-23px;--rot:-65deg;--fall:46vh"></i>
+      <i class="intro__hair" style="--x:66.4%;--d:1.65s;--t:1.46s;--len:0.16em;--r0:27deg;--dx:12px;--rot:148deg;--fall:44vh"></i>
+      <i class="intro__hair" style="--x:11.7%;--d:2.70s;--t:1.37s;--len:0.13em;--r0:-4deg;--dx:29px;--rot:134deg;--fall:44vh"></i>
+      <i class="intro__hair" style="--x:93.2%;--d:1.23s;--t:1.28s;--len:0.26em;--r0:-36deg;--dx:25px;--rot:66deg;--fall:56vh"></i>
+      <i class="intro__hair" style="--x:35.0%;--d:2.26s;--t:1.43s;--len:0.16em;--r0:39deg;--dx:9px;--rot:114deg;--fall:58vh"></i>
+    </div>
+  </div>
+  <div class="intro__cutter">
+    <svg class="intro__scissors" viewBox="0 -14 124 88" xmlns="http://www.w3.org/2000/svg">
+      <g class="intro__blade intro__blade--a">
+        <path d="M66 30 C84 25.5 104 24.5 121 27.2 C105 30.2 86 32 66 32.8 Z" fill="currentColor"/>
+        <path d="M68 31.2 L35 41.5" stroke="currentColor" stroke-width="4.2" stroke-linecap="round" fill="none"/>
+        <ellipse cx="23" cy="45" rx="12" ry="8.5" fill="none" stroke="currentColor" stroke-width="3.6"/>
+      </g>
+      <g class="intro__blade intro__blade--b">
+        <path d="M66 30 C84 34.5 104 35.5 121 32.8 C105 29.8 86 28 66 27.2 Z" fill="currentColor"/>
+        <path d="M68 28.8 L35 18.5" stroke="currentColor" stroke-width="4.2" stroke-linecap="round" fill="none"/>
+        <ellipse cx="23" cy="15" rx="12" ry="8.5" fill="none" stroke="currentColor" stroke-width="3.6"/>
+      </g>
+      <circle cx="66" cy="30" r="2.8" fill="#F7F3EC" stroke="currentColor" stroke-width="1.6"/>
+    </svg>
+  </div>
 </div>
 <script>
 (function () {
@@ -47,10 +74,10 @@
       document.documentElement.classList.remove('has-intro');
       if (intro.parentNode) intro.parentNode.removeChild(intro);
     };
-    intro.addEventListener('click', function () { intro.classList.add('is-skipped'); setTimeout(finish, 450); });
+    intro.addEventListener('click', function () { intro.classList.add('is-skipped'); setTimeout(finish, 350); });
     intro.addEventListener('animationend', function (e) { if (e.target === intro) finish(); });
-    setTimeout(finish, 4000);
-  } catch (e) { /* CSS だけで3秒後に消える */ }
+    setTimeout(finish, 6000);
+  } catch (e) { /* CSS だけで4.5秒後に消える */ }
 })();
 </script>
 
