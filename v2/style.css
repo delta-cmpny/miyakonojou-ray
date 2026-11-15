@@ -840,7 +840,8 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 /* ------------------------------------------------------------
    トップのスタッフ・商品:全部の写真を横に流し続ける(2026-11-12 本人の頼み)
    同じ並びを --copies 回続けて置き、1つ分動いた所で最初に戻すので、切れ目なく回り続けて見える。
-   速さは1枚4秒分(--count 枚で1周)。触れると止まる。動きを減らす設定の人には流さず、横にスクロール
+   速さは1枚4秒分(--count 枚で1周)。止めるボタンは置かず、触れても止まらない。指やマウスで左右に動かせる
+   (2026-11-15 本人の頼み。動かすのはページの終わりの JavaScript)。動きを減らす設定の人には流さず、横にスクロール
    ------------------------------------------------------------ */
 .marquee {
   overflow: hidden;
@@ -857,39 +858,19 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   list-style: none;
   animation: marquee calc(var(--count, 10) * 4s) linear infinite;
 }
-.marquee:hover .marquee__track,
-.marquee:focus-within .marquee__track,
-.marquee.is-paused .marquee__track,
-.marquee-rows:hover .marquee__track,
-.marquee-rows.is-paused .marquee__track { animation-play-state: paused; }
+/* つかんで動かせる時(JavaScript が動く時だけ is-live が付く)。縦のスクロールはページに任せる */
+.marquee.is-live { touch-action: pan-y; cursor: grab; -webkit-user-select: none; user-select: none; }
+.marquee.is-live.is-dragging { cursor: grabbing; }
+.marquee.is-live img { -webkit-user-drag: none; -webkit-touch-callout: none; }
 /* 商品は2段。下の段は逆向き(左→右)に流して左右対称に見せる */
 .marquee--reverse .marquee__track { animation-direction: reverse; }
 .marquee-rows .marquee + .marquee { margin-top: clamp(1.25rem, 4vw, 2rem); }
-/* 止める/動かす。JavaScript が動く時だけ出す。目立たせず右下に小さく */
-.marquee__toggle { display: none; }
-.js .marquee__toggle {
-  display: block;
-  min-height: 44px;
-  margin: .5rem 0 0 auto;
-  padding: 0 .25rem;
-  border: 0;
-  background: none;
-  font-family: var(--serif-ja);
-  font-size: .74rem;
-  letter-spacing: .08em;
-  color: var(--muted);
-  text-decoration: underline;
-  text-underline-offset: .35em;
-  cursor: pointer;
-}
-.marquee__toggle:hover, .marquee__toggle:focus-visible { color: var(--accent); }
 .marquee__track > li { flex: 0 0 auto; width: var(--item-w, 150px); margin-right: clamp(.9rem, 3vw, 1.5rem); }
 @keyframes marquee { to { transform: translate3d(calc(-100% / var(--copies, 2)), 0, 0); } }
 @media (prefers-reduced-motion: reduce) {
   .marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
   .marquee__track { animation: none; padding-inline: var(--pad); }
   .marquee__track > li[aria-hidden="true"] { display: none; }
-  .js .marquee__toggle { display: none; }
 }
 .marquee--staff { --item-w: 150px; }
 .marquee--staff img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }

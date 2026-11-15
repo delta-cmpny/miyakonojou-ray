@@ -10,7 +10,7 @@
 <meta name="description" content="宮崎県都城市蔵原町の美容室Ray。髪と頭皮に負担をかけないことを基準に薬剤と商品を選んでいます。カット3,600円〜。まつ毛、エステ、脱毛まで女性スタッフだけでお受けしています。">
 <meta name="robots" content="noindex">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=20261115f">
+<link rel="stylesheet" href="style.css?v=20261115g">
 </head>
 <body>
 
@@ -448,7 +448,6 @@
           </li>
         </ul>
       </div>
-      <button class="marquee__toggle" type="button" aria-pressed="false">止める</button>
       <a class="sec__cta" href="staff.html"><span class="sec__cta-en">View All Staff</span><span class="sec__cta-ja">スタッフ紹介を見る</span><span class="sec__cta-arr" aria-hidden="true">→</span></a>
     </div>
   </section>
@@ -1072,7 +1071,6 @@
           </ul>
         </div>
       </div>
-      <button class="marquee__toggle" type="button" aria-pressed="false">止める</button>
       <!-- /商品の流れ -->
       <a class="sec__cta" href="products.html"><span class="sec__cta-en">View All Products</span><span class="sec__cta-ja">取扱い商品をすべて見る</span><span class="sec__cta-arr" aria-hidden="true">→</span></a>
     </div>
@@ -1224,14 +1222,59 @@
 
 <script>
 (function () {
-  // 流れる写真(トップのスタッフ・商品)を、キーボードやスマホでも止められるように(「止める」「動かす」)
-  Array.prototype.forEach.call(document.querySelectorAll('.marquee__toggle'), function (b) {
-    b.addEventListener('click', function () {
-      var paused = b.previousElementSibling.classList.toggle('is-paused');
-      b.setAttribute('aria-pressed', String(paused));
-      b.textContent = paused ? '動かす' : '止める';
+  // 流れる写真(トップのスタッフ・商品)は止まらずに流れ続け、指やマウスで左右に動かせる(2026-11-15 本人の頼み。止めるボタンは外した)
+  // 流れは CSS のアニメーションのまま。つかんでいる間だけ位置を指に合わせ、離すと勢いを少し残して元の流れに戻る
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    Array.prototype.forEach.call(document.querySelectorAll('.marquee'), function (box) {
+      var track = box.querySelector('.marquee__track');
+      var anim = track && track.getAnimations && track.getAnimations()[0];
+      if (!anim || !anim.effect) return;
+      var reverse = getComputedStyle(track).animationDirection === 'reverse';
+      var copies = parseFloat(getComputedStyle(box).getPropertyValue('--copies')) || 2;
+      var dur = anim.effect.getComputedTiming().duration;
+      var id = null, lastX = 0, lastT = 0, vel = 0, raf = 0;
+      // 指が dx px 右へ動いた分と、流れの時間 auto ミリ秒分だけ進める(0 より前に戻らないよう、時間を前に余らせる)
+      var move = function (dx, auto) {
+        var t = anim.currentTime + auto + (reverse ? dx : -dx) / (track.offsetWidth / copies) * dur;
+        anim.currentTime = (t % dur + dur) % dur + dur * 100;
+      };
+      box.addEventListener('pointerdown', function (e) {
+        if (id !== null || (e.pointerType === 'mouse' && e.button !== 0)) return;
+        id = e.pointerId; lastX = e.clientX; lastT = e.timeStamp; vel = 0;
+        cancelAnimationFrame(raf);
+        anim.pause();
+        box.classList.add('is-dragging');
+        try { box.setPointerCapture(id); } catch (err) { /* 捕まえられなくても動かせる */ }
+      });
+      box.addEventListener('pointermove', function (e) {
+        if (e.pointerId !== id) return;
+        var dx = e.clientX - lastX, dt = e.timeStamp - lastT;
+        move(dx, 0);
+        if (dt > 0) vel = vel * .3 + dx / dt * .7;
+        lastX = e.clientX; lastT = e.timeStamp;
+      });
+      var release = function (e) {
+        if (e.pointerId !== id) return;
+        id = null;
+        box.classList.remove('is-dragging');
+        if (e.type === 'pointercancel' || e.timeStamp - lastT > 80) vel = 0;
+        var prev = performance.now();
+        var glide = function (now) {
+          var dt = Math.min(now - prev, 50);
+          prev = now;
+          vel *= Math.pow(.94, dt / 16.7);
+          move(vel * dt, dt);
+          if (Math.abs(vel) > .03) raf = requestAnimationFrame(glide); else anim.play();
+        };
+        raf = requestAnimationFrame(glide);
+      };
+      box.addEventListener('pointerup', release);
+      box.addEventListener('pointercancel', release);
+      box.addEventListener('dragstart', function (e) { e.preventDefault(); });
+      box.classList.add('is-live');
     });
-  });
+  })();
 
   var btn = document.getElementById('navToggle');
   var nav = document.getElementById('siteNav');
