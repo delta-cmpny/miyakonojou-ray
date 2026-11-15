@@ -2,15 +2,57 @@
 <html lang="ja">
 <head>
 <script>document.documentElement.className+=" js";</script>
+<!-- 2026-11-15 本人の頼み:トップを開いた時の演出。開いた最初の1回だけ(?intro で何度でも)。動きを減らす設定の人には出さない -->
+<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&(/[?&]intro\b/.test(location.search)||!sessionStorage.getItem('ray-intro'))){document.documentElement.classList.add('has-intro');sessionStorage.setItem('ray-intro','1');}}catch(e){}</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>美容室Ray｜宮崎県都城市蔵原町の美容室</title>
 <meta name="description" content="宮崎県都城市蔵原町の美容室Ray。髪と頭皮に負担をかけないことを基準に薬剤と商品を選んでいます。カット3,600円〜。まつ毛、エステ、脱毛まで女性スタッフだけでお受けしています。">
 <meta name="robots" content="noindex">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=20261113c">
+<link rel="stylesheet" href="style.css?v=20261115a">
 </head>
 <body>
+
+<!-- 2026-11-15 本人の頼み:始まりの演出。「Ray」の文字をハサミが横に切り、切れた上と下が開いてページが出る
+     (&&のパン屋さんと同じ作り:最初の1回だけ・押すと飛ばせる・JavaScriptが動かなくても3秒で消える) -->
+<div class="intro" aria-hidden="true">
+  <div class="intro__half intro__half--top"><div class="intro__stage"><p class="intro__logo">Ray<span>MIYAKONOJO</span></p></div></div>
+  <div class="intro__half intro__half--bottom"><div class="intro__stage"><p class="intro__logo">Ray<span>MIYAKONOJO</span></p></div></div>
+  <div class="intro__cut"></div>
+  <svg class="intro__scissors" viewBox="0 -14 124 88" xmlns="http://www.w3.org/2000/svg">
+    <g class="intro__blade intro__blade--a">
+      <path d="M66 30 C84 25.5 104 24.5 121 27.2 C105 30.2 86 32 66 32.8 Z" fill="currentColor"/>
+      <path d="M68 31.2 L35 41.5" stroke="currentColor" stroke-width="4.2" stroke-linecap="round" fill="none"/>
+      <ellipse cx="23" cy="45" rx="12" ry="8.5" fill="none" stroke="currentColor" stroke-width="3.6"/>
+    </g>
+    <g class="intro__blade intro__blade--b">
+      <path d="M66 30 C84 34.5 104 35.5 121 32.8 C105 29.8 86 28 66 27.2 Z" fill="currentColor"/>
+      <path d="M68 28.8 L35 18.5" stroke="currentColor" stroke-width="4.2" stroke-linecap="round" fill="none"/>
+      <ellipse cx="23" cy="15" rx="12" ry="8.5" fill="none" stroke="currentColor" stroke-width="3.6"/>
+    </g>
+    <circle cx="66" cy="30" r="2.8" fill="#F7F3EC" stroke="currentColor" stroke-width="1.6"/>
+  </svg>
+</div>
+<script>
+(function () {
+  // 演出が終わったら外す。押すと飛ばせる
+  try {
+    var intro = document.querySelector('.intro');
+    if (!intro || !document.documentElement.classList.contains('has-intro')) return;
+    var done = false;
+    var finish = function () {
+      if (done) return;
+      done = true;
+      document.documentElement.classList.remove('has-intro');
+      if (intro.parentNode) intro.parentNode.removeChild(intro);
+    };
+    intro.addEventListener('click', function () { intro.classList.add('is-skipped'); setTimeout(finish, 450); });
+    intro.addEventListener('animationend', function (e) { if (e.target === intro) finish(); });
+    setTimeout(finish, 4000);
+  } catch (e) { /* CSS だけで3秒後に消える */ }
+})();
+</script>
 
 <a class="skip" href="#main">本文へスキップ</a>
 
