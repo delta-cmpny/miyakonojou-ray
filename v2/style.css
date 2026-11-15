@@ -78,9 +78,9 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 
 /* ------------------------------------------------------------
    始まりの演出(2026-11-15 本人の頼み。トップだけ・最初の1回だけ)
-   0.1〜0.6秒 「Ray」が浮かぶ → 0.4秒 ハサミが文字の右端に現れ、0.65秒〜 右から左へチョキチョキ切る
-   (文字の右端から左端までは、どの画面の幅でも1.2秒。左端で消える)→ 切れた下の文字と髪が、通った所から順にパラパラ落ちる
-   → 2.6〜3.1秒 全体が消えてページが出る。押すと飛ばせる
+   0.05〜0.45秒 「Ray」が浮かぶ → 0.3秒 ハサミが文字の右端に現れ、0.5秒〜 右から左へチョキチョキ切る
+   (文字の右端から左端までは、どの画面の幅でも0.9秒。左端で消える)→ 切れた下の文字と髪が、通った所から順にパラパラ落ちる
+   → 2.0〜2.5秒 全体が消えてページが出る。押すと飛ばせる
    ------------------------------------------------------------ */
 
 .intro { display: none; }
@@ -88,7 +88,7 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   --fs: clamp(4.5rem, 24vw, 9rem);
   display: block; position: fixed; inset: 0; z-index: 200; cursor: pointer; overflow: hidden;
   background: var(--bg);
-  animation: intro-out 0.5s ease 2.6s forwards;   /* JavaScriptが動かなくても、3.1秒で消えて押せるようになる */
+  animation: intro-out 0.5s ease 2.0s forwards;   /* JavaScriptが動かなくても、2.5秒で消えて押せるようになる */
 }
 .intro__stage { position: absolute; inset: 0; display: grid; place-items: center; }
 /* 切れ目(箱の上から60%)が画面の真ん中に来るよう、少し上げる。60%は小文字の高さの真ん中 */
@@ -96,7 +96,7 @@ a:hover, a:focus-visible { color: var(--accent-d); }
   position: relative; top: -.1em;
   font-family: var(--serif-ja); font-size: var(--fs); line-height: 1;
   letter-spacing: .1em; text-indent: .1em; color: var(--ink);
-  opacity: 0; transform: translateY(.08em); animation: intro-in .5s ease .1s forwards;
+  opacity: 0; transform: translateY(.08em); animation: intro-in 0.4s ease 0.05s forwards;
 }
 .intro__word { margin: 0; white-space: nowrap; }
 .intro__word--top { clip-path: inset(0 0 40% 0); }
@@ -116,19 +116,19 @@ a:hover, a:focus-visible { color: var(--accent-d); }
 .intro__cutter {
   position: absolute; left: 0; top: 50%; width: clamp(64px, 16vw, 96px); opacity: 0;
   transform: translate(calc(50vw + var(--fs) * 1.05 - 46.8% + 28px), -50%);
-  animation: intro-travel 1.70s linear 0.4s forwards;
+  animation: intro-travel 1.30s linear 0.3s forwards;
 }
 .intro__scissors { display: block; width: 100%; height: auto; overflow: visible; color: var(--accent); transform: scaleX(-1); }
 /* 刃を大きく開いて閉じる(チョキチョキ)。支点は絵の(66, 30) */
 .intro__blade { transform-box: view-box; transform-origin: 66px 30px; }
-.intro__blade--a { transform: rotate(-24deg); animation: intro-snip-a 0.3s ease-in-out 0.65s 4 both; }
-.intro__blade--b { transform: rotate(24deg); animation: intro-snip-b 0.3s ease-in-out 0.65s 4 both; }
+.intro__blade--a { transform: rotate(-24deg); animation: intro-snip-a 0.3s ease-in-out 0.5s 3 both; }
+.intro__blade--b { transform: rotate(24deg); animation: intro-snip-b 0.3s ease-in-out 0.5s 3 both; }
 .has-intro .intro.is-skipped { animation: intro-out .3s ease forwards; }
 @keyframes intro-in { to { opacity: 1; transform: none; } }
 @keyframes intro-travel {
   0% { opacity: 0; transform: translate(calc(50vw + var(--fs) * 1.05 - 46.8% + 28px), -50%); animation-timing-function: ease-out; }
-  14.71% { opacity: 1; transform: translate(calc(50vw + var(--fs) * 1.05 - 46.8%), -50%); animation-timing-function: linear; }
-  85.29% { opacity: 1; transform: translate(calc(50vw - var(--fs) * 1.05 - 46.8%), -50%); animation-timing-function: ease-in; }
+  15.38% { opacity: 1; transform: translate(calc(50vw + var(--fs) * 1.05 - 46.8%), -50%); animation-timing-function: linear; }
+  84.62% { opacity: 1; transform: translate(calc(50vw - var(--fs) * 1.05 - 46.8%), -50%); animation-timing-function: ease-in; }
   100% { opacity: 0; transform: translate(calc(50vw - var(--fs) * 1.05 - 46.8% - 28px), -50%); }
 }
 @keyframes intro-snip-a { 0%, 100% { transform: rotate(-24deg); } 50% { transform: rotate(0deg); } }
